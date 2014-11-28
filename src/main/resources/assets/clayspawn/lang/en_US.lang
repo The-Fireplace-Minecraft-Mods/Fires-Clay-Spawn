@@ -1,0 +1,2 @@
+OreGenRate=Ore Generation Rate
+OreGenRate.tooltip=Must be the name of a Vanilla ore. If not, it will default to Iron.
