@@ -42,9 +42,13 @@ public class ClaySpawnBase {
 	
 	public static Configuration file;
 	public static Property OREGENRATE_PROPERTY;
+	public static Property DENSITYOVERRIDE_PROPERTY;
+	public static Property HEIGHTOVERRIDE_PROPERTY;
 
 	public static void syncConfig(){
 		ConfigValues.OREGENRATE = OREGENRATE_PROPERTY.getString();
+		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
+		ConfigValues.HEIGHTOVERRIDE = HEIGHTOVERRIDE_PROPERTY.getInt();
 		if(file.hasChanged()){
 	        file.save();
 		}
@@ -56,6 +60,8 @@ public class ClaySpawnBase {
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT);
+		DENSITYOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT);
+		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT);
 		syncConfig();
 		retriveCurrentVersions();
 	}
