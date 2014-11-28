@@ -2,11 +2,13 @@ package the_fireplace.clayspawn.worldgen;
 
 import java.util.Random;
 
+import net.minecraft.block.state.pattern.BlockHelper;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.fireplacecore.config.FCCV;
 
