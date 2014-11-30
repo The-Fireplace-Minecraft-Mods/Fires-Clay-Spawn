@@ -27,13 +27,13 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="clayspawn", name="Fire's Clay Spawn", version="1.0.1.0", acceptedMinecraftVersions = "1.7.2,1.7.10", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", dependencies="required-after:fireplacecore@[1.0.3.0,)")
+@Mod(modid=ClaySpawnBase.MODID, name=ClaySpawnBase.MODNAME, version=ClaySpawnBase.VERSION, acceptedMinecraftVersions = "1.7.2,1.7.10", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", dependencies="required-after:fireplacecore@[1.0.3.0,)")
 public class ClaySpawnBase {
-	@Instance("clayspawn")
+	@Instance(ClaySpawnBase.MODID)
 	public static ClaySpawnBase instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "1.0.1.0";
+	public static final String VERSION = "1.1.0.1";
 	
 	private static int updateNotification;
 	private static String releaseVersion;
@@ -42,9 +42,13 @@ public class ClaySpawnBase {
 	
 	public static Configuration file;
 	public static Property OREGENRATE_PROPERTY;
+	public static Property DENSITYOVERRIDE_PROPERTY;
+	public static Property HEIGHTOVERRIDE_PROPERTY;
 
 	public static void syncConfig(){
 		ConfigValues.OREGENRATE = OREGENRATE_PROPERTY.getString();
+		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
+		ConfigValues.HEIGHTOVERRIDE = HEIGHTOVERRIDE_PROPERTY.getInt();
 		if(file.hasChanged()){
 	        file.save();
 		}
@@ -56,6 +60,8 @@ public class ClaySpawnBase {
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT);
+		DENSITYOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT);
+		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT);
 		syncConfig();
 		retriveCurrentVersions();
 	}

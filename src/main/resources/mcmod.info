@@ -2,8 +2,8 @@
 {
   "modid": "clayspawn",
   "name": "Fire's Clay Spawn",
-  "description": "A mod allowing Clay to spawn in the world just like ores. You can change which ore it spawns like in the config.",
-  "version": "1.0.1.0",
+  "description": "A mod allowing Clay to spawn in the world just like ores. You can change which ore it spawns like(or add your own spawn rate) in the config.",
+  "version": "1.1.0.1",
   "mcversion": "1.7.10",
   "url": "http://f1repl4ce.enjin.com/forum/m/19328304/viewthread/14061762-1710fires-clay-spawn/forum/m/19328304/viewforum",
   "updateUrl": "",
