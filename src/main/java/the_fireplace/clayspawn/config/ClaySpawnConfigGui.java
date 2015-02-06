@@ -4,7 +4,7 @@ import the_fireplace.clayspawn.ClaySpawnBase;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.client.config.GuiConfig;
+import net.minecraftforge.fml.client.config.GuiConfig;
 
 public class ClaySpawnConfigGui extends GuiConfig{
 	public ClaySpawnConfigGui(GuiScreen parentScreen) {
