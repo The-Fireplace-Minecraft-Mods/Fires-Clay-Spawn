@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-# *.jar
 gradle-wrapper.jar
 *.war
 *.ear
@@ -33,7 +32,6 @@ MinecraftForge-License.txt
 README.txt
 CREDITS-fml.txt
 forge-*-changelog.txt
-*.log
 .classpath
 .gradle/*
 .project
