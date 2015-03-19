@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import the_fireplace.clayspawn.config.ConfigChangedHandler;
+import the_fireplace.clayspawn.config.FMLEvents;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
 import the_fireplace.fireplacecore.FireCoreBaseFile;
@@ -56,7 +56,7 @@ public class ClaySpawnBase {
 	
 	@EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-		FMLCommonHandler.instance().bus().register(new ConfigChangedHandler());
+		FMLCommonHandler.instance().bus().register(new FMLEvents());
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT);
