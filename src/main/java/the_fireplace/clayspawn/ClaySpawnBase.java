@@ -13,6 +13,7 @@ import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
 import the_fireplace.fireplacecore.FireCoreBaseFile;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -39,6 +40,7 @@ public class ClaySpawnBase {
 	private static String releaseVersion;
 	private static String prereleaseVersion;
 	private static final String downloadURL = "http://goo.gl/Xy3Aak";
+	public static NBTTagCompound update = new NBTTagCompound();
 	
 	public static Configuration file;
 	public static Property OREGENRATE_PROPERTY;
@@ -67,6 +69,7 @@ public class ClaySpawnBase {
 		HEIGHTOVERRIDE_PROPERTY.comment="Overrides the highest layer the clay can spawn at. Leave at 0 to use the Ore Generation Rate's maximum height.";
 		syncConfig();
 		retriveCurrentVersions();
+		FireCoreBaseFile.addUpdateInfo(update, MODNAME, VERSION, prereleaseVersion, releaseVersion, downloadURL, MODID);
 	}
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
@@ -84,30 +87,15 @@ public class ClaySpawnBase {
 			switch (updateNotification) {
 			case 0:
 				if (isHigherVersion(VERSION, releaseVersion) && isHigherVersion(prereleaseVersion, releaseVersion)) {
-					sendToPlayer(
-							player,
-							"§6A new version of "+MODNAME+" is available!\n§l§c========== §4"
-									+ releaseVersion
-									+ "§c ==========\n"
-									+ "§6Download it at §e" + downloadURL + "§6!");
+					FireCoreBaseFile.sendClientUpdateNotification(player, MODNAME, VERSION, downloadURL);
 				}else if(isHigherVersion(VERSION, prereleaseVersion)){
-					sendToPlayer(
-							player,
-							"§6A new version of "+MODNAME+" is available!\n§l§c========== §4"
-									+ prereleaseVersion
-									+ "§c ==========\n"
-									+ "§6Download it at §e" + downloadURL + "§6!");
+					FireCoreBaseFile.sendClientUpdateNotification(player, MODNAME, VERSION, downloadURL);
 				}
 
 				break;
 			case 1:
 				if (isHigherVersion(VERSION, releaseVersion)) {
-					sendToPlayer(
-							player,
-							"§6A new version of "+MODNAME+" is available!\n§l§c========== §4"
-									+ releaseVersion
-									+ "§c ==========\n"
-									+ "§6Download it at §e" + downloadURL + "§6!");
+					FireCoreBaseFile.sendClientUpdateNotification(player, MODNAME, VERSION, downloadURL);
 				}
 				break;
 			case 2:
@@ -115,20 +103,6 @@ public class ClaySpawnBase {
 				break;
 			}
 		}
-	}
-	
-	/**
-	 * Sends a chat message to the current player. Only works client side
-	 * 
-	 * @param message
-	 *            the message to be sent
-	 */
-	private static void sendToPlayer(EntityPlayer player, String message) {
-		String[] lines = message.split("\n");
-
-		for (String line : lines)
-			((ICommandSender) player)
-					.addChatMessage(new ChatComponentText(line));
 	}
 
 	/**
