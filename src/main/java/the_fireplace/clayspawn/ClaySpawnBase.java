@@ -60,8 +60,11 @@ public class ClaySpawnBase {
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT);
+		OREGENRATE_PROPERTY.comment="Ore Generation Rate. Must be the name of a Vanilla ore. If not, it will default to Iron.";
 		DENSITYOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT);
+		DENSITYOVERRIDE_PROPERTY.comment="Overrides how large the clay veins will be. Leave at 0 to use the Ore Generation Rate's density.";
 		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT);
+		HEIGHTOVERRIDE_PROPERTY.comment="Overrides the highest layer the clay can spawn at. Leave at 0 to use the Ore Generation Rate's maximum height.";
 		syncConfig();
 		retriveCurrentVersions();
 	}
