@@ -34,12 +34,12 @@ public class ClaySpawnBase {
 	public static ClaySpawnBase instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "2.0.1.0";
+	public static final String VERSION = "2.0.2.0";
 	
 	private static int updateNotification;
 	private static String releaseVersion;
 	private static String prereleaseVersion;
-	private static final String downloadURL = "http://goo.gl/Xy3Aak";
+	private static final String downloadURL = "http://goo.gl/vi8Kom";
 	public static NBTTagCompound update = new NBTTagCompound();
 	
 	public static Configuration file;
