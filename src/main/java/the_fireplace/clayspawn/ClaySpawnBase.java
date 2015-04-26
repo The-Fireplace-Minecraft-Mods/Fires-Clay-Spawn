@@ -7,27 +7,28 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import the_fireplace.clayspawn.config.FMLEvents;
-import the_fireplace.clayspawn.config.ConfigValues;
-import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
-import the_fireplace.fireplacecore.FireCoreBaseFile;
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
+import the_fireplace.clayspawn.config.ConfigValues;
+import the_fireplace.clayspawn.config.FMLEvents;
+import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
+import the_fireplace.fireplacecore.FireCoreBaseFile;
+/**
+ * 
+ * @author The_Fireplace
+ *
+ */
 @Mod(modid=ClaySpawnBase.MODID, name=ClaySpawnBase.MODNAME, version=ClaySpawnBase.VERSION, acceptedMinecraftVersions = "1.8", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", dependencies="required-after:fireplacecore@[1.0.3.0,)")
 public class ClaySpawnBase {
 	@Instance(ClaySpawnBase.MODID)
@@ -35,13 +36,13 @@ public class ClaySpawnBase {
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
 	public static final String VERSION = "2.0.2.0";
-	
+
 	private static int updateNotification;
 	private static String releaseVersion;
 	private static String prereleaseVersion;
 	private static final String downloadURL = "http://goo.gl/vi8Kom";
 	public static NBTTagCompound update = new NBTTagCompound();
-	
+
 	public static Configuration file;
 	public static Property OREGENRATE_PROPERTY;
 	public static Property DENSITYOVERRIDE_PROPERTY;
@@ -52,21 +53,21 @@ public class ClaySpawnBase {
 		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HEIGHTOVERRIDE = HEIGHTOVERRIDE_PROPERTY.getInt();
 		if(file.hasChanged()){
-	        file.save();
+			file.save();
 		}
 	}
-	
+
 	@EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event) {
 		FMLCommonHandler.instance().bus().register(new FMLEvents());
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT);
-		OREGENRATE_PROPERTY.comment="Ore Generation Rate. Must be the name of a Vanilla ore. If not, it will default to Iron.";
+		OREGENRATE_PROPERTY.comment=StatCollector.translateToLocal("OreGenRate.tooltip");
 		DENSITYOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT);
-		DENSITYOVERRIDE_PROPERTY.comment="Overrides how large the clay veins will be. Leave at 0 to use the Ore Generation Rate's density.";
+		DENSITYOVERRIDE_PROPERTY.comment=StatCollector.translateToLocal("DensityOverride.tooltip");
 		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT);
-		HEIGHTOVERRIDE_PROPERTY.comment="Overrides the highest layer the clay can spawn at. Leave at 0 to use the Ore Generation Rate's maximum height.";
+		HEIGHTOVERRIDE_PROPERTY.comment=StatCollector.translateToLocal("HeightOverride.tooltip");
 		syncConfig();
 		retriveCurrentVersions();
 		FireCoreBaseFile.addUpdateInfo(update, MODNAME, VERSION, prereleaseVersion, releaseVersion, downloadURL, MODID);
@@ -99,7 +100,7 @@ public class ClaySpawnBase {
 				}
 				break;
 			case 2:
-				
+
 				break;
 			}
 		}
@@ -151,11 +152,11 @@ public class ClaySpawnBase {
 		try {
 			releaseVersion = get_content(new URL(
 					"https://dl.dropboxusercontent.com/s/p8r9sxhab98xqb5/release.version?dl=0")
-					.openConnection());
+			.openConnection());
 
 			prereleaseVersion = get_content(new URL(
 					"https://dl.dropboxusercontent.com/s/f78akvw8ugw52ye/prerelease.version?dl=0")
-					.openConnection());
+			.openConnection());
 
 		} catch (final MalformedURLException e) {
 			System.out.println("Malformed URL Exception");
