@@ -35,7 +35,7 @@ public class ClaySpawn {
 	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "2.0.2.0";
+	public static final String VERSION = "2.0.3.0";
 
 	private static int updateNotification;
 	private static String releaseVersion;
