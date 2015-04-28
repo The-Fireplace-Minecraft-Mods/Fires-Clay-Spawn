@@ -9,9 +9,9 @@
   "updateUrl": "http://goo.gl/vi8Kom",
   "authorList": ["The_Fireplace"],
   "credits": "The_Fireplace for authoring",
-  "logoFile": "",
+  "logoFile": "logo.png",
   "screenshots": [],
-  "dependencies": [ "fireplacecore" ],
+  "dependencies": [ "fireplacecore", "VersionChecker" ],
   "requiredMods": [ "fireplacecore" ],
   "useDependencyInformation": true
 }

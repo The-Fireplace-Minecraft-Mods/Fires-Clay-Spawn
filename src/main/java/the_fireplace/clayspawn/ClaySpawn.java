@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.config.ConfigValues;
-import the_fireplace.clayspawn.config.FMLEvents;
+import the_fireplace.clayspawn.event.FMLEvents;
 import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
 import the_fireplace.fireplacecore.FireCoreBaseFile;
 /**
@@ -29,10 +29,10 @@ import the_fireplace.fireplacecore.FireCoreBaseFile;
  * @author The_Fireplace
  *
  */
-@Mod(modid=ClaySpawnBase.MODID, name=ClaySpawnBase.MODNAME, version=ClaySpawnBase.VERSION, acceptedMinecraftVersions = "1.8", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", dependencies="required-after:fireplacecore@[1.0.3.0,)")
-public class ClaySpawnBase {
-	@Instance(ClaySpawnBase.MODID)
-	public static ClaySpawnBase instance;
+@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, version=ClaySpawn.VERSION, acceptedMinecraftVersions = "1.8", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", dependencies="required-after:fireplacecore@[1.0.3.0,)")
+public class ClaySpawn {
+	@Instance(ClaySpawn.MODID)
+	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
 	public static final String VERSION = "2.0.2.0";

@@ -1,5 +1,9 @@
 package the_fireplace.clayspawn.config;
-
+/**
+ * 
+ * @author The_Fireplace
+ *
+ */
 public class ConfigValues {
 	public static String OREGENRATE;
 	public static final String OREGENRATE_DEFAULT = "Iron";
