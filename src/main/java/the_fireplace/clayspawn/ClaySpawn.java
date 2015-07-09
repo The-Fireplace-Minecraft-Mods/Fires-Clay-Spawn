@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import the_fireplace.clayspawn.api.CSAPI;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.clayspawn.event.FMLEvents;
 import the_fireplace.clayspawn.firecorecompat.FCCompat;
@@ -30,6 +31,8 @@ public class ClaySpawn {
 	public static final String MODNAME = "Fire's Clay Spawn";
 	public static final String VERSION = "2.1.1.0";
 	public static final String downloadURL = "http://goo.gl/vi8Kom";
+
+	public WorldGeneratorClay wg = new WorldGeneratorClay();
 
 	public static Configuration file;
 	public static Property OREGENRATE_PROPERTY;
@@ -64,9 +67,19 @@ public class ClaySpawn {
 			compat=new FCCompatDummy();
 		}
 		compat.register();
+		CSAPI.registerOre("iron", 65, 8);
+		CSAPI.registerOre("coal", 128, 16);
+		CSAPI.registerOre("diamond", 15, 7);
+		CSAPI.registerOre("gold", 32, 8);
+		CSAPI.registerOre("budder", 32, 8);
+		CSAPI.registerOre("gold", 32, 8);
+		CSAPI.registerOre("emerald", 32, 1);
+		CSAPI.registerOre("lapis", 31, 6);
+		CSAPI.registerOre("lapis lazuli", 31, 6);
+		CSAPI.registerOre("redstone", 16, 7);
 	}
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
-		GameRegistry.registerWorldGenerator(new WorldGeneratorClay(), 1);
+		GameRegistry.registerWorldGenerator(wg, 1);
 	}
 }
