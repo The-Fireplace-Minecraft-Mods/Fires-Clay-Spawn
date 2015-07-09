@@ -77,6 +77,9 @@ public class ClaySpawn {
 		CSAPI.registerOre("lapis", 31, 6);
 		CSAPI.registerOre("lapis lazuli", 31, 6);
 		CSAPI.registerOre("redstone", 16, 7);
+		//Mod Ores
+		CSAPI.registerOre("unlogicii:fossil", 12, 2);
+		CSAPI.registerOre("clayspawn:clayworld", 255, 32);
 	}
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
