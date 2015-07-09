@@ -3,7 +3,7 @@
   "modid": "clayspawn",
   "name": "Fire's Clay Spawn",
   "description": "A mod allowing Clay to spawn in the world just like ores. You can change which ore it spawns like(or add your own spawn rate) in the config.",
-  "version": "2.0.4.0",
+  "version": "2.1.1.0",
   "mcversion": "1.8",
   "url": "http://goo.gl/vi8Kom",
   "updateUrl": "http://goo.gl/vi8Kom",
@@ -11,8 +11,8 @@
   "credits": "The_Fireplace for authoring",
   "logoFile": "logo.png",
   "screenshots": [],
-  "dependencies": [ "fireplacecore", "VersionChecker" ],
-  "requiredMods": [ "fireplacecore@[2.2.2.0,)","Forge@[11.14.1.*,)" ],
+  "dependencies": [ "fireplacecore" ],
+  "requiredMods": [ "Forge@[11.14.1.*,)" ],
   "useDependencyInformation": true
 }
 ]
