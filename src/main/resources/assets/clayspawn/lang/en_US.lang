@@ -1,5 +1,5 @@
 OreGenRate=Ore Generation Rate
-OreGenRate.tooltip=Must be the name of a Vanilla ore. If not, it will default to Iron.
+OreGenRate.tooltip=Must be the name of a Vanilla ore or supported mod ore(format: modid:orename). If not, it will default to Iron.
 DensityOverride=Ore Density Override
 DensityOverride.tooltip=Overrides how large the clay veins will be. Leave at 0 to use the Ore Generation Rate's density.
 HeightOverride=Maximum Ore Generation Layer Override
