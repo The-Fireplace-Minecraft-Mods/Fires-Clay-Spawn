@@ -14,9 +14,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.api.CSAPI;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.clayspawn.event.FMLEvents;
-import the_fireplace.clayspawn.firecorecompat.FCCompat;
-import the_fireplace.clayspawn.firecorecompat.FCCompatDummy;
-import the_fireplace.clayspawn.firecorecompat.IFCCompat;
+import the_fireplace.clayspawn.firecorecompat.FulcrumCompat;
+import the_fireplace.clayspawn.firecorecompat.FulcrumCompatDummy;
+import the_fireplace.clayspawn.firecorecompat.IFulcrumCompat;
 import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
 /**
  *
@@ -29,7 +29,7 @@ public class ClaySpawn {
 	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "2.1.1.0";
+	public static final String VERSION = "2.1.2.0";
 	public static final String downloadURL = "http://goo.gl/vi8Kom";
 
 	public WorldGeneratorClay wg = new WorldGeneratorClay();
@@ -60,11 +60,11 @@ public class ClaySpawn {
 		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT);
 		HEIGHTOVERRIDE_PROPERTY.comment=StatCollector.translateToLocal("HeightOverride.tooltip");
 		syncConfig();
-		IFCCompat compat;
-		if(Loader.isModLoaded("fireplacecore")){
-			compat=new FCCompat();
+		IFulcrumCompat compat;
+		if(Loader.isModLoaded("fulcrum")){
+			compat=new FulcrumCompat();
 		}else{
-			compat=new FCCompatDummy();
+			compat=new FulcrumCompatDummy();
 		}
 		compat.register();
 		CSAPI.registerOre("iron", 65, 8);

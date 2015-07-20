@@ -1,6 +1,6 @@
 package the_fireplace.clayspawn.firecorecompat;
 
-public class FCCompatDummy implements IFCCompat {
+public class FulcrumCompatDummy implements IFulcrumCompat {
 
 	@Override
 	public void register() {
