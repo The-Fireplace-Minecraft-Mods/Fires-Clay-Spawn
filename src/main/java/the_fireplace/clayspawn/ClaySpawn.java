@@ -14,16 +14,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.api.CSAPI;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.clayspawn.event.FMLEvents;
-import the_fireplace.clayspawn.firecorecompat.FulcrumCompat;
-import the_fireplace.clayspawn.firecorecompat.FulcrumCompatDummy;
-import the_fireplace.clayspawn.firecorecompat.IFulcrumCompat;
 import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
 /**
- *
  * @author The_Fireplace
- *
  */
-@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, version=ClaySpawn.VERSION, acceptedMinecraftVersions = "1.8", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", dependencies="required-after:fireplacecore@[1.0.3.0,)")
+@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, version=ClaySpawn.VERSION, acceptedMinecraftVersions = "1.8", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory")
 public class ClaySpawn {
 	@Instance(ClaySpawn.MODID)
 	public static ClaySpawn instance;
@@ -60,13 +55,6 @@ public class ClaySpawn {
 		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT);
 		HEIGHTOVERRIDE_PROPERTY.comment=StatCollector.translateToLocal("HeightOverride.tooltip");
 		syncConfig();
-		IFulcrumCompat compat;
-		if(Loader.isModLoaded("fulcrum")){
-			compat=new FulcrumCompat();
-		}else{
-			compat=new FulcrumCompatDummy();
-		}
-		compat.register();
 		CSAPI.registerOre("iron", 65, 8);
 		CSAPI.registerOre("coal", 128, 16);
 		CSAPI.registerOre("diamond", 15, 7);

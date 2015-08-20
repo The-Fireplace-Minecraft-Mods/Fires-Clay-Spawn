@@ -11,8 +11,8 @@
   "credits": "The_Fireplace for authoring",
   "logoFile": "logo.png",
   "screenshots": [],
-  "dependencies": [ "fulcrum" ],
-  "requiredMods": [ "Forge@[11.14.1.*,)" ],
+  "dependencies": [],
+  "requiredMods": ["Forge@[11.14.1.*,)"],
   "useDependencyInformation": true
 }
 ]
