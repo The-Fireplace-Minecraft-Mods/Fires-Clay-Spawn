@@ -16,5 +16,6 @@ public class CSAPI {
 		String on = orename.toLowerCase();
 		ClaySpawn.instance.wg.genlayer.put(on, maxlayer);
 		ClaySpawn.instance.wg.genrate.put(on, rate);
+		ClaySpawn.instance.entries.put(on, orename);
 	}
 }
