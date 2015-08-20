@@ -24,7 +24,7 @@ public class ClaySpawn {
 	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "2.1.2.0";
+	public static final String VERSION = "2.2.1.0";
 	public static final String downloadURL = "http://goo.gl/vi8Kom";
 
 	public WorldGeneratorClay wg = new WorldGeneratorClay();
