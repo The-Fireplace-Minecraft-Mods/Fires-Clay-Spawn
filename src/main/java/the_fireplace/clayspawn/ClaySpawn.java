@@ -28,7 +28,7 @@ public class ClaySpawn {
 	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "2.2.1.0";
+	public static final String VERSION = "2.2.2.0";
 	public static final String downloadURL = "http://goo.gl/nvtiAM";
 
 	public WorldGeneratorClay wg = new WorldGeneratorClay();
@@ -66,7 +66,8 @@ public class ClaySpawn {
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.OREGENRATE_NAME+".tooltip"));
 		DENSITYOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.DENSITYOVERRIDE_NAME+".tooltip"));
 		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HEIGHTOVERRIDE_NAME+".tooltip"));
-		OREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
+		if(event.getSide().isClient())
+			OREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
 		syncConfig();
 	}
 	@EventHandler

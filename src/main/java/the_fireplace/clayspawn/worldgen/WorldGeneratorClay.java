@@ -49,6 +49,6 @@ public class WorldGeneratorClay implements IWorldGenerator {
 			int Zcoord = BlockZ + random.nextInt(16);
 			int Ycoord = random.nextInt(layer);
 			(new WorldGenMinable(Blocks.clay.getDefaultState(), rate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
-		}}
-
+		}
+	}
 }
