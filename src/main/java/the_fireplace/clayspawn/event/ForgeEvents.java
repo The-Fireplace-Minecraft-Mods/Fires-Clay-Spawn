@@ -1,4 +1,4 @@
-package the_fireplace.clayspawn.event;
+/*package the_fireplace.clayspawn.event;
 
 import java.util.Random;
 
@@ -47,3 +47,4 @@ public class ForgeEvents {
 		chunkData.setTag(CLAYSPAWN, rgen);
 	}
 }
+ */
