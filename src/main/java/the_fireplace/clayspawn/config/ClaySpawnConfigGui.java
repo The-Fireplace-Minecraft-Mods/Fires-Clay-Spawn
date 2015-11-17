@@ -13,6 +13,5 @@ public class ClaySpawnConfigGui extends GuiConfig{
 		super(parentScreen,
 				new ConfigElement(ClaySpawn.file.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), ClaySpawn.MODID, true,
 				false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
-		this.titleLine2="";
 	}
 }
