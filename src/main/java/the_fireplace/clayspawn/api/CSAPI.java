@@ -4,7 +4,7 @@ import the_fireplace.clayspawn.ClaySpawn;
 
 public class CSAPI {
 	/**
-	 * Registers the ore
+	 * Registers the ore generation style
 	 * @param orename
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
 	 * @param maxlayer
