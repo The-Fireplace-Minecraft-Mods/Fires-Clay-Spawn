@@ -66,6 +66,9 @@ public class ClaySpawn {
 		//Mod Ores
 		CSAPI.registerOre("unlogicii:fossil", 12, 2);
 		CSAPI.registerOre("clayspawn:clayworld", 255, 32);
+		CSAPI.registerOre("forestry:apatite", 184, 64, 36);
+		CSAPI.registerOre("forestry:copper", 108, 32, 6);
+		CSAPI.registerOre("forestry:tin", 92, 16, 6);
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
