@@ -22,14 +22,14 @@ import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, version=ClaySpawn.VERSION, acceptedMinecraftVersions = "1.8", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory")
+@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory")
 public class ClaySpawn {
 	@Instance(ClaySpawn.MODID)
 	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static final String VERSION = "2.2.2.0";
-	public static final String downloadURL = "http://goo.gl/nvtiAM";
+	public static String VERSION;
+	public static final String curseCode = "225539-fires-clay-spawn";
 
 	public WorldGeneratorClay wg = new WorldGeneratorClay();
 	public Map entries = Maps.newHashMap();
@@ -50,6 +50,12 @@ public class ClaySpawn {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		String[] version = event.getModMetadata().version.split("\\.");
+		if(version[3].equals("BUILDNUMBER"))//Dev environment
+			VERSION = event.getModMetadata().version.replace("BUILDNUMBER", "9001");
+		else//Released build
+			VERSION = event.getModMetadata().version;
+
 		CSAPI.registerOre("iron", 65, 8);
 		CSAPI.registerOre("coal", 128, 16);
 		CSAPI.registerOre("diamond", 15, 7);
@@ -74,5 +80,4 @@ public class ClaySpawn {
 	public void Init(FMLInitializationEvent event){
 		GameRegistry.registerWorldGenerator(wg, 1);
 	}
-	public static final String LATEST = "https://dl.dropboxusercontent.com/s/p8r9sxhab98xqb5/release.version?dl=0";
 }
