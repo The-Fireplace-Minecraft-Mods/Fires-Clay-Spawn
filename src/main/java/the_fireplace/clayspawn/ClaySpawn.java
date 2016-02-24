@@ -1,13 +1,10 @@
 package the_fireplace.clayspawn;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
-
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -17,8 +14,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.api.CSAPI;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.clayspawn.config.OreGenEntries;
-import the_fireplace.clayspawn.event.FMLEvents;
+import the_fireplace.clayspawn.event.ForgeEvents;
 import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
+
+import java.util.Map;
 /**
  * @author The_Fireplace
  */
@@ -67,7 +66,7 @@ public class ClaySpawn {
 		//Mod Ores
 		CSAPI.registerOre("unlogicii:fossil", 12, 2);
 		CSAPI.registerOre("clayspawn:clayworld", 255, 32);
-		FMLCommonHandler.instance().bus().register(new FMLEvents());
+		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 		file = new Configuration(event.getSuggestedConfigurationFile());
 		file.load();
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.OREGENRATE_NAME+".tooltip"));
