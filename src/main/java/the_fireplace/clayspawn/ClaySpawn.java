@@ -38,14 +38,15 @@ public class ClaySpawn {
 	public static Property OREGENRATE_PROPERTY;
 	public static Property DENSITYOVERRIDE_PROPERTY;
 	public static Property HEIGHTOVERRIDE_PROPERTY;
+	public static Property MINHEIGHTOVERRIDE_PROPERTY;
 
 	public static void syncConfig(){
 		ConfigValues.OREGENRATE = OREGENRATE_PROPERTY.getString();
 		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HEIGHTOVERRIDE = HEIGHTOVERRIDE_PROPERTY.getInt();
-		if(file.hasChanged()){
+		ConfigValues.MINHEIGHTOVERRIDE = MINHEIGHTOVERRIDE_PROPERTY.getInt();
+		if(file.hasChanged())
 			file.save();
-		}
 	}
 
 	@EventHandler
@@ -60,7 +61,7 @@ public class ClaySpawn {
 		CSAPI.registerOre("coal", 128, 16);
 		CSAPI.registerOre("diamond", 15, 7);
 		CSAPI.registerOre("gold", 32, 8);
-		CSAPI.registerOre("emerald", 32, 1);
+		CSAPI.registerOre("emerald", 32, 4, 1);
 		CSAPI.registerOre("lapis", 31, 6);
 		CSAPI.registerOre("redstone", 16, 7);
 		//Mod Ores
@@ -72,6 +73,7 @@ public class ClaySpawn {
 		OREGENRATE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.OREGENRATE_NAME+".tooltip"));
 		DENSITYOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.DENSITYOVERRIDE_NAME+".tooltip"));
 		HEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.HEIGHTOVERRIDE_NAME, ConfigValues.HEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HEIGHTOVERRIDE_NAME+".tooltip"));
+		MINHEIGHTOVERRIDE_PROPERTY = file.get(Configuration.CATEGORY_GENERAL, ConfigValues.MINHEIGHTOVERRIDE_NAME, ConfigValues.MINHEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.MINHEIGHTOVERRIDE_NAME+".tooltip"));
 		if(event.getSide().isClient())
 			OREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
 		syncConfig();

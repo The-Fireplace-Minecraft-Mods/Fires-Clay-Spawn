@@ -13,8 +13,23 @@ public class CSAPI {
 	 * 		The approximate amount per vein
 	 */
 	public static void registerOre(String orename, int maxlayer, int rate){
+		registerOre(orename, maxlayer, 0, rate);
+	}
+	/**
+	 * Registers the ore generation style
+	 * @param orename
+	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
+	 * @param maxlayer
+	 * 		The highest layer that ore can generate, must be between 0 and 255
+	 * @param minlayer
+	 * 		The lowest layer that ore can generate, must be between 0 and 255
+	 * @param rate
+	 * 		The approximate amount per vein
+	 */
+	public static void registerOre(String orename, int maxlayer, int minlayer, int rate){
 		String on = orename.toLowerCase();
-		ClaySpawn.instance.wg.genlayer.put(on, maxlayer);
+		ClaySpawn.instance.wg.genlayermax.put(on, maxlayer);
+		ClaySpawn.instance.wg.genlayermin.put(on, minlayer);
 		ClaySpawn.instance.wg.genrate.put(on, rate);
 		ClaySpawn.instance.entries.put(on, orename);
 	}

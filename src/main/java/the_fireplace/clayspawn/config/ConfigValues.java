@@ -14,4 +14,7 @@ public class ConfigValues {
 	public static int HEIGHTOVERRIDE;
 	public static final int HEIGHTOVERRIDE_DEFAULT = 0;
 	public static final String HEIGHTOVERRIDE_NAME = "HeightOverride";
+	public static int MINHEIGHTOVERRIDE;
+	public static final int MINHEIGHTOVERRIDE_DEFAULT = 0;
+	public static final String MINHEIGHTOVERRIDE_NAME = "MinHeightOverride";
 }

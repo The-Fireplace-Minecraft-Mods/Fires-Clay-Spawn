@@ -4,3 +4,5 @@ DensityOverride=Ore Density Override
 DensityOverride.tooltip=Overrides how large the clay veins will be. Leave at 0 to use the Ore Generation Rate's density.
 HeightOverride=Maximum Ore Generation Layer Override
 HeightOverride.tooltip=Overrides the highest layer the clay can spawn at. Leave at 0 to use the Ore Generation Rate's maximum height.
+MinHeightOverride=Minimum Ore Generation Layer Override
+MinHeightOverride.tooltip=Overrides the lowest layer the clay can spawn at. Leave at 0 to use the Ore Generation Rate's minimum height.
