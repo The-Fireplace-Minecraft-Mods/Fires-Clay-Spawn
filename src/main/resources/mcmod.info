@@ -3,7 +3,7 @@
   "modid": "clayspawn",
   "name": "Fire's Clay Spawn",
   "description": "A mod allowing Clay to spawn in the world just like ores. You can change which ore it spawns like(or add your own spawn rate) in the config.",
-  "version": "4.0.1.BUILDNUMBER",
+  "version": "4.1.1.BUILDNUMBER",
   "mcversion": "1.8.8,1.8.9",
   "url": "http://goo.gl/nvtiAM",
   "updateUrl": "http://goo.gl/nvtiAM",
