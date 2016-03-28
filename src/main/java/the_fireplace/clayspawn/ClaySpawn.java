@@ -1,7 +1,7 @@
 package the_fireplace.clayspawn;
 
 import com.google.common.collect.Maps;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
@@ -89,17 +89,17 @@ public class ClaySpawn {
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 		file = new Configuration(new File(event.getModConfigurationDirectory()+"fclayspawn.cfg"));
 		file.load();
-		GENERATE_PROPERTY = file.get("clay", ConfigValues.GENERATE_NAME, ConfigValues.GENERATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.GENERATE_NAME+".tooltip"));
-		OREGENRATE_PROPERTY = file.get("clay", ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.OREGENRATE_NAME+".tooltip"));
-		DENSITYOVERRIDE_PROPERTY = file.get("clay", ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.DENSITYOVERRIDE_NAME+".tooltip"));
-		MAXHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MAXHEIGHTOVERRIDE_NAME, ConfigValues.MAXHEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.MAXHEIGHTOVERRIDE_NAME +".tooltip"));
-		MINHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MINHEIGHTOVERRIDE_NAME, ConfigValues.MINHEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.MINHEIGHTOVERRIDE_NAME+".tooltip"));
-		HARDGENERATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDGENERATE_NAME, ConfigValues.HARDGENERATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HARDGENERATE_NAME+".tooltip"));
-		HARDOREGENRATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDOREGENRATE_NAME, ConfigValues.HARDOREGENRATE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HARDOREGENRATE_NAME+".tooltip"));
-		HARDDENSITYOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDDENSITYOVERRIDE_NAME, ConfigValues.HARDDENSITYOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HARDDENSITYOVERRIDE_NAME+".tooltip"));
-		HARDMAXHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME, ConfigValues.HARDMAXHEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME +".tooltip"));
-		HARDMINHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMINHEIGHTOVERRIDE_NAME, ConfigValues.HARDMINHEIGHTOVERRIDE_DEFAULT, StatCollector.translateToLocal(ConfigValues.HARDMINHEIGHTOVERRIDE_NAME+".tooltip"));
-		COLORFULCLAY_PROPERTY = file.get("hardenedclay", ConfigValues.COLORFULCLAY_NAME, ConfigValues.COLORFULCLAY_DEFAULT, StatCollector.translateToLocal(ConfigValues.COLORFULCLAY_NAME+".tooltip"));
+		GENERATE_PROPERTY = file.get("clay", ConfigValues.GENERATE_NAME, ConfigValues.GENERATE_DEFAULT, I18n.translateToLocal(ConfigValues.GENERATE_NAME+".tooltip"));
+		OREGENRATE_PROPERTY = file.get("clay", ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT, I18n.translateToLocal(ConfigValues.OREGENRATE_NAME+".tooltip"));
+		DENSITYOVERRIDE_PROPERTY = file.get("clay", ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.DENSITYOVERRIDE_NAME+".tooltip"));
+		MAXHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MAXHEIGHTOVERRIDE_NAME, ConfigValues.MAXHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.MAXHEIGHTOVERRIDE_NAME +".tooltip"));
+		MINHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MINHEIGHTOVERRIDE_NAME, ConfigValues.MINHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.MINHEIGHTOVERRIDE_NAME+".tooltip"));
+		HARDGENERATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDGENERATE_NAME, ConfigValues.HARDGENERATE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDGENERATE_NAME+".tooltip"));
+		HARDOREGENRATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDOREGENRATE_NAME, ConfigValues.HARDOREGENRATE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDOREGENRATE_NAME+".tooltip"));
+		HARDDENSITYOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDDENSITYOVERRIDE_NAME, ConfigValues.HARDDENSITYOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDDENSITYOVERRIDE_NAME+".tooltip"));
+		HARDMAXHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME, ConfigValues.HARDMAXHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME +".tooltip"));
+		HARDMINHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMINHEIGHTOVERRIDE_NAME, ConfigValues.HARDMINHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDMINHEIGHTOVERRIDE_NAME+".tooltip"));
+		COLORFULCLAY_PROPERTY = file.get("hardenedclay", ConfigValues.COLORFULCLAY_NAME, ConfigValues.COLORFULCLAY_DEFAULT, I18n.translateToLocal(ConfigValues.COLORFULCLAY_NAME+".tooltip"));
 		if(event.getSide().isClient())
 			OREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
 		if(event.getSide().isClient())

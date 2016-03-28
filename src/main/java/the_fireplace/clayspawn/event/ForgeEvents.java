@@ -7,7 +7,7 @@ import the_fireplace.clayspawn.ClaySpawn;
 public class ForgeEvents {
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
-		if(eventArgs.modID.equals(ClaySpawn.MODID))
+		if(eventArgs.getModID().equals(ClaySpawn.MODID))
 			ClaySpawn.syncConfig();
 	}
 }

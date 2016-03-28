@@ -15,13 +15,20 @@ plugins {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+allprojects {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
 curseforge {
   apiKey = project.curseForgeApiKey
   project {
     id = '225539'
     changelog = file('changelog.txt')
     releaseType = 'release'
-	addGameVersion '1.8.9'
+	addGameVersion '1.9'
+	addGameVersion 'Java 7'
+	addGameVersion 'Java 8'
     mainArtifact (jar){
 		relations{
 			optionalLibrary 'simpleretrogen'
@@ -35,9 +42,9 @@ group= "the_fireplace.clayspawn"
 archivesBaseName = "FiresClaySpawn"
 
 minecraft {
-    version = "1.8.9-11.15.0.1697"
+    version = "1.9-12.16.0.1811-1.9"
     runDir = "run"
-    mappings = "stable_20"
+    mappings = "snapshot_20160312"
 }
 
 dependencies {

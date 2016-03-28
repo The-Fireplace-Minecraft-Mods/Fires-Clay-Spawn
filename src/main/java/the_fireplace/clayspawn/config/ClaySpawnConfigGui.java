@@ -21,7 +21,7 @@ public class ClaySpawnConfigGui extends GuiConfig{
 				false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
 	}
 	public static List<IConfigElement> getConfigElements(){
-		List<IConfigElement> list = new ArrayList<IConfigElement>();
+		List<IConfigElement> list = new ArrayList<>();
 		list.add(new DummyConfigElement.DummyCategoryElement("clayCfg", "clayCfg", ClayEntry.class));
 		list.add(new DummyConfigElement.DummyCategoryElement("hardClayCfg", "hardClayCfg", HardClayEntry.class));
 		return list;
