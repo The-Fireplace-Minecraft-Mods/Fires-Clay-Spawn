@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.api.CSAPI;
 import the_fireplace.clayspawn.config.ConfigValues;
@@ -110,6 +111,42 @@ public class ClaySpawn {
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
 		GameRegistry.registerWorldGenerator(wg, 1);
+	}
+
+	@EventHandler
+	public void serverAboutToStart(FMLServerAboutToStartEvent event){
+		//Regular Clay
+		if(ConfigValues.DENSITYOVERRIDE > 0)
+			wg.setRate(ConfigValues.DENSITYOVERRIDE);
+		else
+		if(wg.genrate.get(ConfigValues.OREGENRATE) != null)
+			wg.setRate((int)wg.genrate.get(ConfigValues.OREGENRATE));
+		if(ConfigValues.MAXHEIGHTOVERRIDE > 0)
+			wg.setMaxLayer(ConfigValues.MAXHEIGHTOVERRIDE);
+		else
+		if(wg.genlayermax.get(ConfigValues.OREGENRATE) != null)
+			wg.setMaxLayer((int)wg.genlayermax.get(ConfigValues.OREGENRATE));
+		if(ConfigValues.MINHEIGHTOVERRIDE > 0)
+			wg.setMinLayer(ConfigValues.MINHEIGHTOVERRIDE);
+		else
+		if(wg.genlayermin.get(ConfigValues.OREGENRATE) != null)
+			wg.setMinLayer((int)wg.genlayermin.get(ConfigValues.OREGENRATE));
+		//Hardened Clay
+		if(ConfigValues.HARDDENSITYOVERRIDE > 0)
+			wg.setHardRate(ConfigValues.HARDDENSITYOVERRIDE);
+		else
+		if(wg.genrate.get(ConfigValues.HARDOREGENRATE) != null)
+			wg.setHardRate((int)wg.genrate.get(ConfigValues.HARDOREGENRATE));
+		if(ConfigValues.HARDMAXHEIGHTOVERRIDE > 0)
+			wg.setHardMaxLayer(ConfigValues.HARDMAXHEIGHTOVERRIDE);
+		else
+		if(wg.genlayermax.get(ConfigValues.HARDOREGENRATE) != null)
+			wg.setHardMaxLayer((int)wg.genlayermax.get(ConfigValues.HARDOREGENRATE));
+		if(ConfigValues.HARDMINHEIGHTOVERRIDE > 0)
+			wg.setHardMinLayer(ConfigValues.HARDMINHEIGHTOVERRIDE);
+		else
+		if(wg.genlayermin.get(ConfigValues.HARDOREGENRATE) != null)
+			wg.setHardMinLayer((int)wg.genlayermin.get(ConfigValues.HARDOREGENRATE));
 	}
 
 	private void transferOldConfig(File file){
