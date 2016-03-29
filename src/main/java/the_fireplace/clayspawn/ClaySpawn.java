@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.api.CSAPI;
 import the_fireplace.clayspawn.config.ConfigValues;
+import the_fireplace.clayspawn.config.GuiImpreciseSlider;
 import the_fireplace.clayspawn.config.OreGenEntries;
 import the_fireplace.clayspawn.event.ForgeEvents;
 import the_fireplace.clayspawn.worldgen.WorldGeneratorClay;
@@ -101,10 +102,29 @@ public class ClaySpawn {
 		HARDMAXHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME, ConfigValues.HARDMAXHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME +".tooltip"));
 		HARDMINHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMINHEIGHTOVERRIDE_NAME, ConfigValues.HARDMINHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDMINHEIGHTOVERRIDE_NAME+".tooltip"));
 		COLORFULCLAY_PROPERTY = file.get("hardenedclay", ConfigValues.COLORFULCLAY_NAME, ConfigValues.COLORFULCLAY_DEFAULT, I18n.translateToLocal(ConfigValues.COLORFULCLAY_NAME+".tooltip"));
-		if(event.getSide().isClient())
+
+		DENSITYOVERRIDE_PROPERTY.setMinValue(0);
+		MAXHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
+		MINHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
+		HARDDENSITYOVERRIDE_PROPERTY.setMinValue(0);
+		HARDMAXHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
+		HARDMINHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
+		DENSITYOVERRIDE_PROPERTY.setMaxValue(36);
+		MAXHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
+		MINHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
+		HARDDENSITYOVERRIDE_PROPERTY.setMaxValue(36);
+		HARDMAXHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
+		HARDMINHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
+		if(event.getSide().isClient()) {
 			OREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
-		if(event.getSide().isClient())
 			HARDOREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
+			DENSITYOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			MAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			MINHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			HARDDENSITYOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			HARDMAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			HARDMINHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+		}
 		transferOldConfig(event.getSuggestedConfigurationFile());
 		syncConfig();
 	}
