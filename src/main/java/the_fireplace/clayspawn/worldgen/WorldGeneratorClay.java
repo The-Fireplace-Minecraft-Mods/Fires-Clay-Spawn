@@ -40,6 +40,8 @@ public class WorldGeneratorClay implements IWorldGenerator {
 	private void generateSurface(World world, Random random, int BlockX, int BlockZ) {
 		//Clay
 		if(ConfigValues.GENERATE){
+			if(maxLayer-minLayer < 0)
+				return;
 			for(int i = 0; i< maxLayer; i++){
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
@@ -49,6 +51,8 @@ public class WorldGeneratorClay implements IWorldGenerator {
 		}
 		//Hardened Clay
 		if(ConfigValues.HARDGENERATE){
+			if(hardMaxLayer-hardMinLayer < 0)
+				return;
 			for(int i = 0; i< hardMaxLayer; i++){
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
