@@ -29,7 +29,7 @@ public class WorldGeneratorClay implements IWorldGenerator {
 	private int hardMinLayer = 0;
 	private int hardRate = 8;
 
-	private IBlockState hardState = Blocks.hardened_clay.getDefaultState();
+	private IBlockState hardState = Blocks.HARDENED_CLAY.getDefaultState();
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
@@ -44,7 +44,7 @@ public class WorldGeneratorClay implements IWorldGenerator {
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(maxLayer-minLayer)+minLayer;
-				(new WorldGenMinable(Blocks.clay.getDefaultState(), rate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenMinable(Blocks.CLAY.getDefaultState(), rate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		}
 		//Hardened Clay
@@ -54,7 +54,7 @@ public class WorldGeneratorClay implements IWorldGenerator {
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(hardMaxLayer-hardMinLayer)+hardMinLayer;
 				if(ConfigValues.COLORFULCLAY)
-					hardState = Blocks.stained_hardened_clay.getStateFromMeta(random.nextInt(15));
+					hardState = Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(random.nextInt(15));
 				(new WorldGenMinable(hardState, hardRate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		}
