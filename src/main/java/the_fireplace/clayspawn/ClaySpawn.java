@@ -25,14 +25,12 @@ import java.util.Map;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/clayspawn.json")
+@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/clayspawn.json", acceptedMinecraftVersions = "[1.9.4,1.10)")
 public class ClaySpawn {
 	@Instance(ClaySpawn.MODID)
 	public static ClaySpawn instance;
 	public static final String MODID = "clayspawn";
 	public static final String MODNAME = "Fire's Clay Spawn";
-	public static String VERSION;
-	public static final String curseCode = "225539-fires-clay-spawn";
 
 	public WorldGeneratorClay wg = new WorldGeneratorClay();
 	public Map entries = Maps.newHashMap();
@@ -70,12 +68,6 @@ public class ClaySpawn {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		String[] version = event.getModMetadata().version.split("\\.");
-		if(version[3].equals("BUILDNUMBER"))//Dev environment
-			VERSION = event.getModMetadata().version.replace("BUILDNUMBER", "9001");
-		else//Released build
-			VERSION = event.getModMetadata().version;
-
 		CSAPI.registerOre("iron", 65, 8);
 		CSAPI.registerOre("coal", 128, 16);
 		CSAPI.registerOre("diamond", 15, 7);
@@ -84,7 +76,7 @@ public class ClaySpawn {
 		CSAPI.registerOre("lapis", 31, 6);
 		CSAPI.registerOre("redstone", 16, 7);
 		//Mod Ores
-		CSAPI.registerOre("unlogicii:fossil", 12, 2);
+		CSAPI.registerOre("frt:fossil", 12, 2);
 		CSAPI.registerOre("forestry:apatite", 184, 64, 36);
 		CSAPI.registerOre("forestry:copper", 108, 32, 6);
 		CSAPI.registerOre("forestry:tin", 92, 16, 6);
