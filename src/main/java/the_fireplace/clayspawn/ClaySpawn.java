@@ -117,7 +117,8 @@ public class ClaySpawn {
 			HARDMAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 			HARDMINHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 		}
-		transferOldConfig(event.getSuggestedConfigurationFile());
+		transferAncientConfig(event.getSuggestedConfigurationFile());
+		transferOldConfig(new File(event.getModConfigurationDirectory()+"fclayspawn.cfg"));
 		syncConfig();
 	}
 	@EventHandler
@@ -161,7 +162,7 @@ public class ClaySpawn {
 			wg.setHardMinLayer((int)wg.genlayermin.get(ConfigValues.HARDOREGENRATE));
 	}
 
-	private void transferOldConfig(File file){
+	private void transferAncientConfig(File file){
 		if(file.exists()){
 			Configuration temp = new Configuration(file);
 			ConfigCategory cat = temp.getCategory(Configuration.CATEGORY_GENERAL);
@@ -173,6 +174,37 @@ public class ClaySpawn {
 				MAXHEIGHTOVERRIDE_PROPERTY.set(cat.get("HeightOverride").getInt());
 			if(cat.containsKey("MinHeightOverride"))
 				MINHEIGHTOVERRIDE_PROPERTY.set(cat.get("MinHeightOverride").getInt());
+			file.delete();
+		}
+	}
+
+	private void transferOldConfig(File file){
+		if(file.exists()){
+			Configuration temp = new Configuration(file);
+			ConfigCategory cat = temp.getCategory("clay");
+			if(cat.containsKey("Generate"))
+				GENERATE_PROPERTY.set(cat.get("Generate").getString());
+			if(cat.containsKey("OreGenRate"))
+				OREGENRATE_PROPERTY.set(cat.get("OreGenRate").getString());
+			if(cat.containsKey("DensityOverride"))
+				DENSITYOVERRIDE_PROPERTY.set(cat.get("DensityOverride").getInt());
+			if(cat.containsKey("MaxHeightOverride"))
+				MAXHEIGHTOVERRIDE_PROPERTY.set(cat.get("MaxHeightOverride").getInt());
+			if(cat.containsKey("MinHeightOverride"))
+				MINHEIGHTOVERRIDE_PROPERTY.set(cat.get("MinHeightOverride").getInt());
+			cat = temp.getCategory("hardenedclay");
+			if(cat.containsKey("HardGenerate"))
+				HARDGENERATE_PROPERTY.set(cat.get("HardGenerate").getString());
+			if(cat.containsKey("HardOreGenRate"))
+				HARDOREGENRATE_PROPERTY.set(cat.get("HardOreGenRate").getString());
+			if(cat.containsKey("HardDensityOverride"))
+				HARDDENSITYOVERRIDE_PROPERTY.set(cat.get("HardDensityOverride").getInt());
+			if(cat.containsKey("HardMaxHeightOverride"))
+				HARDMAXHEIGHTOVERRIDE_PROPERTY.set(cat.get("HardMaxHeightOverride").getInt());
+			if(cat.containsKey("HardMinHeightOverride"))
+				HARDMINHEIGHTOVERRIDE_PROPERTY.set(cat.get("HardMinHeightOverride").getInt());
+			if(cat.containsKey("ColorfulClay"))
+				COLORFULCLAY_PROPERTY.set(cat.get("ColorfulClay").getInt());
 			file.delete();
 		}
 	}
