@@ -81,7 +81,7 @@ public class ClaySpawn {
 		CSAPI.registerOre("forestry:copper", 108, 32, 6);
 		CSAPI.registerOre("forestry:tin", 92, 16, 6);
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
-		file = new Configuration(new File(event.getModConfigurationDirectory()+"fclayspawn.cfg"));
+		file = new Configuration(new File(event.getModConfigurationDirectory(), "fclayspawn.cfg"));
 		file.load();
 		GENERATE_PROPERTY = file.get("clay", ConfigValues.GENERATE_NAME, ConfigValues.GENERATE_DEFAULT, I18n.translateToLocal(ConfigValues.GENERATE_NAME+".tooltip"));
 		OREGENRATE_PROPERTY = file.get("clay", ConfigValues.OREGENRATE_NAME, ConfigValues.OREGENRATE_DEFAULT, I18n.translateToLocal(ConfigValues.OREGENRATE_NAME+".tooltip"));
