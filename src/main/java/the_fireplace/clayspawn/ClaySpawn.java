@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/clayspawn.json", acceptedMinecraftVersions = "[1.9.4,1.10)")
+@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/clayspawn.json", acceptedMinecraftVersions = "[1.9.4,1.10.2]")
 public class ClaySpawn {
 	@Instance(ClaySpawn.MODID)
 	public static ClaySpawn instance;
