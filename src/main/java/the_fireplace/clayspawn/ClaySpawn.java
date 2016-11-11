@@ -6,6 +6,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -14,6 +15,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerAboutToStartEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.clayspawn.api.CSAPI;
+import the_fireplace.clayspawn.compat.IModCompat;
+import the_fireplace.clayspawn.compat.JERCompat;
 import the_fireplace.clayspawn.config.ConfigValues;
 import the_fireplace.clayspawn.config.GuiImpreciseSlider;
 import the_fireplace.clayspawn.config.OreGenEntries;
@@ -25,7 +28,7 @@ import java.util.Map;
 /**
  * @author The_Fireplace
  */
-@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/clayspawn.json", acceptedMinecraftVersions = "[1.9.4,1.10.2]")
+@Mod(modid=ClaySpawn.MODID, name=ClaySpawn.MODNAME, guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "http://thefireplace.bitnamiapp.com/jsons/clayspawn.json")
 public class ClaySpawn {
 	@Instance(ClaySpawn.MODID)
 	public static ClaySpawn instance;
@@ -124,6 +127,11 @@ public class ClaySpawn {
 	@EventHandler
 	public void Init(FMLInitializationEvent event){
 		GameRegistry.registerWorldGenerator(wg, 1);
+		IModCompat compat;
+		if(Loader.isModLoaded("jeresources")){
+			compat = new JERCompat();
+			compat.init();
+		}
 	}
 
 	@EventHandler

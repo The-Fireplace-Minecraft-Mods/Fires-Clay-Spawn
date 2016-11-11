@@ -64,23 +64,47 @@ public class WorldGeneratorClay implements IWorldGenerator {
 		maxLayer = layer;
 	}
 
+	public int getMaxLayer(){
+		return maxLayer;
+	}
+
 	public void setMinLayer(int layer){
 		minLayer = layer;
+	}
+
+	public int getMinLayer(){
+		return minLayer;
 	}
 
 	public void setRate(int weight){
 		rate = weight;
 	}
 
+	public int getRate(){
+		return rate;
+	}
+
 	public void setHardMaxLayer(int layer){
 		hardMaxLayer = layer;
+	}
+
+	public int getHardMaxLayer(){
+		return hardMaxLayer;
 	}
 
 	public void setHardMinLayer(int layer){
 		hardMinLayer = layer;
 	}
 
+	public int getHardMinLayer(){
+		return hardMinLayer;
+	}
+
 	public void setHardRate(int weight){
 		hardRate = weight;
+	}
+
+	public int getHardRate(){
+		return hardRate;
 	}
 }

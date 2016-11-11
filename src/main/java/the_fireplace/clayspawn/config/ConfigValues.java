@@ -1,4 +1,7 @@
 package the_fireplace.clayspawn.config;
+
+import net.minecraftforge.fml.common.Loader;
+
 /**
  * 
  * @author The_Fireplace
@@ -37,6 +40,6 @@ public class ConfigValues {
 	public static final int HARDMINHEIGHTOVERRIDE_DEFAULT = 0;
 	public static final String HARDMINHEIGHTOVERRIDE_NAME = "HardMinHeightOverride";
 	public static boolean COLORFULCLAY;
-	public static final boolean COLORFULCLAY_DEFAULT = true;
+	public static final boolean COLORFULCLAY_DEFAULT = !Loader.isModLoaded("immersiveengineering");
 	public static final String COLORFULCLAY_NAME = "ColorfulClay";
 }
