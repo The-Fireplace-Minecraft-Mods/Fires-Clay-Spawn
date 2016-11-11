@@ -28,6 +28,7 @@ public class JERCompat implements IModCompat{
         jerAPI.getWorldGenRegistry().register(clay, new DistributionSquare(ClaySpawn.instance.wg.getMaxLayer(), ClaySpawn.instance.wg.getRate(), ClaySpawn.instance.wg.getMinLayer(), ClaySpawn.instance.wg.getMaxLayer()),
                 new LootDrop(new ItemStack(Items.CLAY_BALL, 4)),
                 new LootDrop(clay, 1, 1, Conditional.silkTouch));
-        jerAPI.getWorldGenRegistry().register(hardened_clay, new DistributionSquare(ClaySpawn.instance.wg.getHardMaxLayer(), ClaySpawn.instance.wg.getHardRate(), ClaySpawn.instance.wg.getHardMinLayer(), ClaySpawn.instance.wg.getHardMaxLayer()));
+        jerAPI.getWorldGenRegistry().register(hardened_clay, new DistributionSquare(ClaySpawn.instance.wg.getHardMaxLayer(), ClaySpawn.instance.wg.getHardRate(), ClaySpawn.instance.wg.getHardMinLayer(), ClaySpawn.instance.wg.getHardMaxLayer()),
+                new LootDrop(hardened_clay));
     }
 }
