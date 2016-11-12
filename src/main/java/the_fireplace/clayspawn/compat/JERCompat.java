@@ -2,11 +2,9 @@ package the_fireplace.clayspawn.compat;
 
 import jeresources.api.IJERAPI;
 import jeresources.api.JERPlugin;
-import jeresources.api.conditionals.Conditional;
 import jeresources.api.distributions.DistributionSquare;
 import jeresources.api.drop.LootDrop;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.clayspawn.ClaySpawn;
@@ -25,9 +23,11 @@ public class JERCompat implements IModCompat{
         final ItemStack clay = new ItemStack(Blocks.CLAY);
         final ItemStack hardened_clay = ConfigValues.COLORFULCLAY ? new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1, OreDictionary.WILDCARD_VALUE) : new ItemStack(Blocks.HARDENED_CLAY);
 
-        jerAPI.getWorldGenRegistry().register(clay, new DistributionSquare(ClaySpawn.instance.wg.getMaxLayer(), ClaySpawn.instance.wg.getRate(), ClaySpawn.instance.wg.getMinLayer(), ClaySpawn.instance.wg.getMaxLayer()),
+        if(ConfigValues.GENERATE)
+        jerAPI.getWorldGenRegistry().register(clay, new DistributionSquare(ClaySpawn.instance.wg.getMaxLayer(), ClaySpawn.instance.wg.getRate(), ClaySpawn.instance.wg.getMinLayer(), ClaySpawn.instance.wg.getMaxLayer())/*,
                 new LootDrop(new ItemStack(Items.CLAY_BALL, 4)),
-                new LootDrop(clay, 1, 1, Conditional.silkTouch));
+                new LootDrop(clay, 1, 1, Conditional.silkTouch)*/);
+        if(ConfigValues.HARDGENERATE)
         jerAPI.getWorldGenRegistry().register(hardened_clay, new DistributionSquare(ClaySpawn.instance.wg.getHardMaxLayer(), ClaySpawn.instance.wg.getHardRate(), ClaySpawn.instance.wg.getHardMinLayer(), ClaySpawn.instance.wg.getHardMaxLayer()),
                 new LootDrop(hardened_clay));
     }
