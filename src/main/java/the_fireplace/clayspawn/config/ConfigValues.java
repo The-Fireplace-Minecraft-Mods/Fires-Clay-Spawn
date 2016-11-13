@@ -23,6 +23,9 @@ public class ConfigValues {
 	public static int MINHEIGHTOVERRIDE;
 	public static final int MINHEIGHTOVERRIDE_DEFAULT = 0;
 	public static final String MINHEIGHTOVERRIDE_NAME = "MinHeightOverride";
+	public static int VEINCOUNTOVERRIDE;
+	public static final int VEINCOUNTOVERRIDE_DEFAULT = 0;
+	public static final String VEINCOUNTOVERRIDE_NAME = "VeinCountOverride";
 	//Hardened Clay
 	public static boolean HARDGENERATE;
 	public static final boolean HARDGENERATE_DEFAULT = true;
@@ -39,6 +42,9 @@ public class ConfigValues {
 	public static int HARDMINHEIGHTOVERRIDE;
 	public static final int HARDMINHEIGHTOVERRIDE_DEFAULT = 0;
 	public static final String HARDMINHEIGHTOVERRIDE_NAME = "HardMinHeightOverride";
+	public static int HARDVEINCOUNTOVERRIDE;
+	public static final int HARDVEINCOUNTOVERRIDE_DEFAULT = 0;
+	public static final String HARDVEINCOUNTOVERRIDE_NAME = "HardVeinCountOverride";
 	public static boolean COLORFULCLAY;
 	public static final boolean COLORFULCLAY_DEFAULT = !Loader.isModLoaded("immersiveengineering");
 	public static final String COLORFULCLAY_NAME = "ColorfulClay";

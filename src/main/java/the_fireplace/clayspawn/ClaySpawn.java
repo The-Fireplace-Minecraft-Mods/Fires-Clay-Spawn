@@ -45,12 +45,14 @@ public class ClaySpawn {
 	public static Property DENSITYOVERRIDE_PROPERTY;
 	public static Property MAXHEIGHTOVERRIDE_PROPERTY;
 	public static Property MINHEIGHTOVERRIDE_PROPERTY;
+	public static Property VEINCOUNTOVERRIDE_PROPERTY;
 	//Hardened Clay
 	public static Property HARDGENERATE_PROPERTY;
 	public static Property HARDOREGENRATE_PROPERTY;
 	public static Property HARDDENSITYOVERRIDE_PROPERTY;
 	public static Property HARDMAXHEIGHTOVERRIDE_PROPERTY;
 	public static Property HARDMINHEIGHTOVERRIDE_PROPERTY;
+	public static Property HARDVEINCOUNTOVERRIDE_PROPERTY;
 	public static Property COLORFULCLAY_PROPERTY;
 
 	public static void syncConfig(){
@@ -59,11 +61,13 @@ public class ClaySpawn {
 		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.MAXHEIGHTOVERRIDE = MAXHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.MINHEIGHTOVERRIDE = MINHEIGHTOVERRIDE_PROPERTY.getInt();
+		ConfigValues.VEINCOUNTOVERRIDE = VEINCOUNTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDGENERATE = HARDGENERATE_PROPERTY.getBoolean();
 		ConfigValues.HARDOREGENRATE = HARDOREGENRATE_PROPERTY.getString();
 		ConfigValues.HARDDENSITYOVERRIDE = HARDDENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDMAXHEIGHTOVERRIDE = HARDMAXHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDMINHEIGHTOVERRIDE = HARDMINHEIGHTOVERRIDE_PROPERTY.getInt();
+		ConfigValues.HARDVEINCOUNTOVERRIDE = HARDVEINCOUNTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.COLORFULCLAY = COLORFULCLAY_PROPERTY.getBoolean();
 		if(file.hasChanged())
 			file.save();
@@ -79,10 +83,10 @@ public class ClaySpawn {
 		CSAPI.registerOre("lapis", 31, 6);
 		CSAPI.registerOre("redstone", 16, 7);
 		//Mod Ores
-		CSAPI.registerOre("frt:fossil", 12, 2);
-		CSAPI.registerOre("forestry:apatite", 184, 64, 36);
-		CSAPI.registerOre("forestry:copper", 108, 32, 6);
-		CSAPI.registerOre("forestry:tin", 92, 16, 6);
+		CSAPI.registerOre("frt:fossil", 12, 2);//TODO: Remove in 1.11
+		CSAPI.registerOre("forestry:apatite", 184, 64, 36, 1);
+		CSAPI.registerOre("forestry:copper", 108, 32, 6, 20);
+		CSAPI.registerOre("forestry:tin", 92, 16, 6, 18);
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 		file = new Configuration(new File(event.getModConfigurationDirectory(), "fclayspawn.cfg"));
 		file.load();
@@ -91,34 +95,42 @@ public class ClaySpawn {
 		DENSITYOVERRIDE_PROPERTY = file.get("clay", ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.DENSITYOVERRIDE_NAME+".tooltip"));
 		MAXHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MAXHEIGHTOVERRIDE_NAME, ConfigValues.MAXHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.MAXHEIGHTOVERRIDE_NAME +".tooltip"));
 		MINHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MINHEIGHTOVERRIDE_NAME, ConfigValues.MINHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.MINHEIGHTOVERRIDE_NAME+".tooltip"));
+		VEINCOUNTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.VEINCOUNTOVERRIDE_NAME, ConfigValues.VEINCOUNTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.VEINCOUNTOVERRIDE_NAME+".tooltip"));
 		HARDGENERATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDGENERATE_NAME, ConfigValues.HARDGENERATE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDGENERATE_NAME+".tooltip"));
 		HARDOREGENRATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDOREGENRATE_NAME, ConfigValues.HARDOREGENRATE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDOREGENRATE_NAME+".tooltip"));
 		HARDDENSITYOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDDENSITYOVERRIDE_NAME, ConfigValues.HARDDENSITYOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDDENSITYOVERRIDE_NAME+".tooltip"));
 		HARDMAXHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME, ConfigValues.HARDMAXHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDMAXHEIGHTOVERRIDE_NAME +".tooltip"));
 		HARDMINHEIGHTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDMINHEIGHTOVERRIDE_NAME, ConfigValues.HARDMINHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDMINHEIGHTOVERRIDE_NAME+".tooltip"));
+		HARDVEINCOUNTOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDVEINCOUNTOVERRIDE_NAME, ConfigValues.HARDVEINCOUNTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDVEINCOUNTOVERRIDE_NAME+".tooltip"));
 		COLORFULCLAY_PROPERTY = file.get("hardenedclay", ConfigValues.COLORFULCLAY_NAME, ConfigValues.COLORFULCLAY_DEFAULT, I18n.translateToLocal(ConfigValues.COLORFULCLAY_NAME+".tooltip"));
 
 		DENSITYOVERRIDE_PROPERTY.setMinValue(0);
 		MAXHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
 		MINHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
+		VEINCOUNTOVERRIDE_PROPERTY.setMinValue(0);
 		HARDDENSITYOVERRIDE_PROPERTY.setMinValue(0);
 		HARDMAXHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
 		HARDMINHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
+		HARDVEINCOUNTOVERRIDE_PROPERTY.setMinValue(0);
 		DENSITYOVERRIDE_PROPERTY.setMaxValue(36);
 		MAXHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
 		MINHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
+		VEINCOUNTOVERRIDE_PROPERTY.setMaxValue(128);
 		HARDDENSITYOVERRIDE_PROPERTY.setMaxValue(36);
 		HARDMAXHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
 		HARDMINHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
+		HARDVEINCOUNTOVERRIDE_PROPERTY.setMaxValue(128);
 		if(event.getSide().isClient()) {
 			OREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
 			HARDOREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
 			DENSITYOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 			MAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 			MINHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			VEINCOUNTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 			HARDDENSITYOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 			HARDMAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 			HARDMINHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
+			HARDVEINCOUNTOVERRIDE_PROPERTY.setConfigEntryClass(GuiImpreciseSlider.class);
 		}
 		transferAncientConfig(event.getSuggestedConfigurationFile());
 		transferOldConfig(new File(event.getModConfigurationDirectory()+"fclayspawn.cfg"));
@@ -152,6 +164,11 @@ public class ClaySpawn {
 		else
 		if(wg.genlayermin.get(ConfigValues.OREGENRATE) != null)
 			wg.setMinLayer((int)wg.genlayermin.get(ConfigValues.OREGENRATE));
+		if(ConfigValues.VEINCOUNTOVERRIDE > 0)
+			wg.setMaxLayer(ConfigValues.VEINCOUNTOVERRIDE);
+		else
+		if(wg.gencount.get(ConfigValues.OREGENRATE) != null)
+			wg.setVeinCount((int)wg.gencount.get(ConfigValues.OREGENRATE));
 		//Hardened Clay
 		if(ConfigValues.HARDDENSITYOVERRIDE > 0)
 			wg.setHardRate(ConfigValues.HARDDENSITYOVERRIDE);
@@ -168,6 +185,11 @@ public class ClaySpawn {
 		else
 		if(wg.genlayermin.get(ConfigValues.HARDOREGENRATE) != null)
 			wg.setHardMinLayer((int)wg.genlayermin.get(ConfigValues.HARDOREGENRATE));
+		if(ConfigValues.HARDVEINCOUNTOVERRIDE > 0)
+			wg.setHardMaxLayer(ConfigValues.HARDVEINCOUNTOVERRIDE);
+		else
+		if(wg.gencount.get(ConfigValues.OREGENRATE) != null)
+			wg.setHardVeinCount((int)wg.gencount.get(ConfigValues.HARDOREGENRATE));
 	}
 
 	private void transferAncientConfig(File file){
