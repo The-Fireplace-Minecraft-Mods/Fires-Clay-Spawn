@@ -87,6 +87,7 @@ public class ClaySpawn {
 		CSAPI.registerOre("forestry:apatite", 184, 64, 36, 1);
 		CSAPI.registerOre("forestry:copper", 108, 32, 6, 20);
 		CSAPI.registerOre("forestry:tin", 92, 16, 6, 18);
+		CSAPI.registerOre("brainstonemod:brainstone", 32, 0, 20, 1);
 		MinecraftForge.EVENT_BUS.register(new ForgeEvents());
 		file = new Configuration(new File(event.getModConfigurationDirectory(), "fclayspawn.cfg"));
 		file.load();
