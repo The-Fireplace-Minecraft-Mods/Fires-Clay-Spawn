@@ -2,6 +2,9 @@ package the_fireplace.clayspawn.api;
 
 import the_fireplace.clayspawn.ClaySpawn;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
 public class CSAPI {
 	/**
 	 * Registers the ore generation style
@@ -43,6 +46,7 @@ public class CSAPI {
 	 * @param veinCount
 	 * 		The number of veins per chunk
 	 */
+	@SuppressWarnings("unchecked")
 	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize, int veinCount){
 		String on = orename.toLowerCase();
 		ClaySpawn.instance.wg.genlayermax.put(on, maxlayer);
