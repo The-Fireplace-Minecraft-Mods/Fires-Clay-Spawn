@@ -83,7 +83,6 @@ public class ClaySpawn {
 		CSAPI.registerOre("lapis", 31, 6);
 		CSAPI.registerOre("redstone", 16, 7);
 		//Mod Ores
-		CSAPI.registerOre("frt:fossil", 12, 2);//TODO: Remove in 1.11
 		CSAPI.registerOre("forestry:apatite", 184, 64, 36, 1);
 		CSAPI.registerOre("forestry:copper", 108, 32, 6, 20);
 		CSAPI.registerOre("forestry:tin", 92, 16, 6, 18);
