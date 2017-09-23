@@ -1,14 +1,13 @@
 package the_fireplace.clayspawn.config;
 
-import java.util.Set;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.client.IModGuiFactory;
+
+import java.util.Set;
+
 /**
- * 
  * @author The_Fireplace
- *
  */
 public class ClaySpawnGuiFactory implements IModGuiFactory {
 
@@ -17,18 +16,17 @@ public class ClaySpawnGuiFactory implements IModGuiFactory {
 	}
 
 	@Override
-	public Class<? extends GuiScreen> mainConfigGuiClass() {
-		return ClaySpawnConfigGui.class;
+	public boolean hasConfigGui() {
+		return true;
+	}
+
+	@Override
+	public GuiScreen createConfigGui(GuiScreen parentScreen) {
+		return new ClaySpawnConfigGui(parentScreen);
 	}
 
 	@Override
 	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
-		return null;
-	}
-
-	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(
-			RuntimeOptionCategoryElement element) {
 		return null;
 	}
 

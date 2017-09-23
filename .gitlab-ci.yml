@@ -2,8 +2,8 @@ variables:
   CACHE_DIR: "$CI_PROJECT_DIR/build"
   CACHE_DIR2: "$CI_PROJECT_DIR/.gradle"
   
-  ORIG_ARTIFACTS: "$CI_PROJECT_DIR/build/libs/FiresClaySpawn-Forge-*.jar"
-  ARTIFACTS: "$CI_PROJECT_DIR/FiresClaySpawn-Forge-*.jar"
+  ORIG_ARTIFACTS: "$CI_PROJECT_DIR/build/libs/FiresClaySpawn-*.jar"
+  ARTIFACTS: "$CI_PROJECT_DIR/FiresClaySpawn-*.jar"
 
 cache:
  paths:
@@ -19,10 +19,22 @@ deploy:
   stage: deploy
   script:
   - ./gradlew clean
+  - ./gradlew build curseforge uploadToModsIO -PcurseForgeApiKey=$curseForgeApiKey -PmodsioApiKey=$modsioApiKey
+  - cp $ORIG_ARTIFACTS .
+  when: manual
+  artifacts:
+    name: "FiresClaySpawn-1.12.1-$(cat $CACHE_DIR/.version)"
+    paths:
+    - $ARTIFACTS
+
+deployMaven:
+  stage: deploy
+  script:
+  - ./gradlew clean
   - ./gradlew build uploadArchives curseforge uploadToModsIO -PcurseForgeApiKey=$curseForgeApiKey -PmodsioApiKey=$modsioApiKey
   - cp $ORIG_ARTIFACTS .
   when: manual
   artifacts:
-    name: "FiresClaySpawn-Forge-$(cat $CACHE_DIR/.version)"
+    name: "FiresClaySpawn-1.12.1-$(cat $CACHE_DIR/.version)"
     paths:
     - $ARTIFACTS

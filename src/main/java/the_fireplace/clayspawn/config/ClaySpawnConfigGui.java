@@ -14,39 +14,57 @@ import java.util.List;
 /**
  * @author The_Fireplace
  */
-public class ClaySpawnConfigGui extends GuiConfig{
+public class ClaySpawnConfigGui extends GuiConfig {
 	public ClaySpawnConfigGui(GuiScreen parentScreen) {
-		super(parentScreen,
-				getConfigElements(), ClaySpawn.MODID, true,
-				false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
+		super(parentScreen, getConfigElements(), ClaySpawn.MODID, true, false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
 	}
-	public static List<IConfigElement> getConfigElements(){
+
+	public static List<IConfigElement> getConfigElements() {
 		List<IConfigElement> list = new ArrayList<>();
 		list.add(new DummyConfigElement.DummyCategoryElement("clayCfg", "clayCfg", ClayEntry.class));
 		list.add(new DummyConfigElement.DummyCategoryElement("hardClayCfg", "hardClayCfg", HardClayEntry.class));
+		list.add(new DummyConfigElement.DummyCategoryElement("glazedTerracottaCfg", "glazedTerracottaCfg", GlazedTerracottaEntry.class));
 		return list;
 	}
+
 	public static class ClayEntry extends GuiConfigEntries.CategoryEntry {
 
 		public ClayEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement) {
 			super(owningScreen, owningEntryList, configElement);
 		}
+
 		@Override
-		protected GuiScreen buildChildScreen(){
+		protected GuiScreen buildChildScreen() {
 			return new GuiConfig(owningScreen,
 					new ConfigElement(ClaySpawn.file.getCategory("clay")).getChildElements(), ClaySpawn.MODID, true,
 					false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
 		}
 	}
+
 	public static class HardClayEntry extends GuiConfigEntries.CategoryEntry {
 
 		public HardClayEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement) {
 			super(owningScreen, owningEntryList, configElement);
 		}
+
 		@Override
-		protected GuiScreen buildChildScreen(){
+		protected GuiScreen buildChildScreen() {
 			return new GuiConfig(owningScreen,
 					new ConfigElement(ClaySpawn.file.getCategory("hardenedclay")).getChildElements(), ClaySpawn.MODID, true,
+					false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
+		}
+	}
+
+	public static class GlazedTerracottaEntry extends GuiConfigEntries.CategoryEntry {
+
+		public GlazedTerracottaEntry(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement) {
+			super(owningScreen, owningEntryList, configElement);
+		}
+
+		@Override
+		protected GuiScreen buildChildScreen() {
+			return new GuiConfig(owningScreen,
+					new ConfigElement(ClaySpawn.file.getCategory("glazedterracotta")).getChildElements(), ClaySpawn.MODID, true,
 					false, GuiConfig.getAbridgedConfigPath(ClaySpawn.file.toString()));
 		}
 	}

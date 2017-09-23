@@ -8,6 +8,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class CSAPI {
 	/**
 	 * Registers the ore generation style
+	 *
 	 * @param orename
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
 	 * @param maxlayer
@@ -15,11 +16,13 @@ public class CSAPI {
 	 * @param veinSize
 	 * 		The approximate amount per vein
 	 */
-	public static void registerOre(String orename, int maxlayer, int veinSize){
+	public static void registerOre(String orename, int maxlayer, int veinSize) {
 		registerOre(orename, maxlayer, 0, veinSize);
 	}
+
 	/**
 	 * Registers the ore generation style
+	 *
 	 * @param orename
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
 	 * @param maxlayer
@@ -29,12 +32,13 @@ public class CSAPI {
 	 * @param veinSize
 	 * 		The approximate amount per vein
 	 */
-	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize){
+	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize) {
 		registerOre(orename, maxlayer, minlayer, veinSize, 0);
 	}
 
 	/**
 	 * Registers the ore generation style
+	 *
 	 * @param orename
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
 	 * @param maxlayer
@@ -47,7 +51,7 @@ public class CSAPI {
 	 * 		The number of veins per chunk
 	 */
 	@SuppressWarnings("unchecked")
-	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize, int veinCount){
+	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize, int veinCount) {
 		String on = orename.toLowerCase();
 		ClaySpawn.instance.wg.genlayermax.put(on, maxlayer);
 		ClaySpawn.instance.wg.genlayermin.put(on, minlayer);

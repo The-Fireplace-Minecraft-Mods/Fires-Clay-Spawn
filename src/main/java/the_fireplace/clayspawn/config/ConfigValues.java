@@ -3,11 +3,13 @@ package the_fireplace.clayspawn.config;
 import net.minecraftforge.fml.common.Loader;
 
 /**
- * 
  * @author The_Fireplace
- *
  */
 public class ConfigValues {
+	public static String[] DIMENSIONLIST;
+	public static final String[] DIMENSIONLIST_DEFAULT = new String[]{"*"};
+	public static final String DIMENSIONLIST_NAME = "DimensionList";
+	//Clay
 	public static boolean GENERATE;
 	public static final boolean GENERATE_DEFAULT = true;
 	public static final String GENERATE_NAME = "Generate";
@@ -26,7 +28,7 @@ public class ConfigValues {
 	public static int VEINCOUNTOVERRIDE;
 	public static final int VEINCOUNTOVERRIDE_DEFAULT = 0;
 	public static final String VEINCOUNTOVERRIDE_NAME = "VeinCountOverride";
-	//Hardened Clay
+	//Terracotta
 	public static boolean HARDGENERATE;
 	public static final boolean HARDGENERATE_DEFAULT = true;
 	public static final String HARDGENERATE_NAME = "HardGenerate";
@@ -48,4 +50,23 @@ public class ConfigValues {
 	public static boolean COLORFULCLAY;
 	public static final boolean COLORFULCLAY_DEFAULT = !Loader.isModLoaded("immersiveengineering");
 	public static final String COLORFULCLAY_NAME = "ColorfulClay";
+	//Glazed Terracotta
+	public static boolean GLAZEDGENERATE;
+	public static final boolean GLAZEDGENERATE_DEFAULT = false;
+	public static final String GLAZEDGENERATE_NAME = "GlazedGenerate";
+	public static String GLAZEDOREGENRATE;
+	public static final String GLAZEDOREGENRATE_DEFAULT = "Gold";
+	public static final String GLAZEDOREGENRATE_NAME = "GlazedOreGenRate";
+	public static int GLAZEDDENSITYOVERRIDE;
+	public static final int GLAZEDDENSITYOVERRIDE_DEFAULT = 0;
+	public static final String GLAZEDDENSITYOVERRIDE_NAME = "GlazedDensityOverride";
+	public static int GLAZEDMAXHEIGHTOVERRIDE;
+	public static final int GLAZEDMAXHEIGHTOVERRIDE_DEFAULT = 0;
+	public static final String GLAZEDMAXHEIGHTOVERRIDE_NAME = "GlazedMaxHeightOverride";
+	public static int GLAZEDMINHEIGHTOVERRIDE;
+	public static final int GLAZEDMINHEIGHTOVERRIDE_DEFAULT = 0;
+	public static final String GLAZEDMINHEIGHTOVERRIDE_NAME = "GlazedMinHeightOverride";
+	public static int GLAZEDVEINCOUNTOVERRIDE;
+	public static final int GLAZEDVEINCOUNTOVERRIDE_DEFAULT = 0;
+	public static final String GLAZEDVEINCOUNTOVERRIDE_NAME = "GlazedVeinCountOverride";
 }
