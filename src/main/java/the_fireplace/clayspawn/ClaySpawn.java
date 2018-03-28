@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = ClaySpawn.MODID, name = ClaySpawn.MODNAME, version = "${version}", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "https://bitbucket.org/The_Fireplace/minecraft-mod-updates/raw/master/clayspawn.json", acceptedMinecraftVersions = "[1.12,)")
+@Mod(modid = ClaySpawn.MODID, name = ClaySpawn.MODNAME, version = "${version}", guiFactory = "the_fireplace.clayspawn.config.ClaySpawnGuiFactory", updateJSON = "https://bitbucket.org/The_Fireplace/minecraft-mod-updates/raw/master/clayspawn.json", acceptedMinecraftVersions = "[1.12,1.13)")
 public class ClaySpawn {
 	@Instance(ClaySpawn.MODID)
 	public static ClaySpawn instance;
@@ -38,7 +38,7 @@ public class ClaySpawn {
 	public Map<Object, String> entries = Maps.newHashMap();
 
 	public static Configuration file;
-	public static Property DIMENSIONLIST_PROPERTY;
+	//public static Property DIMENSIONLIST_PROPERTY;
 	//Clay
 	public static Property GENERATE_PROPERTY;
 	public static Property OREGENRATE_PROPERTY;
@@ -63,7 +63,7 @@ public class ClaySpawn {
 	public static Property GLAZEDVEINCOUNTOVERRIDE_PROPERTY;
 
 	public static void syncConfig() {
-		ConfigValues.DIMENSIONLIST = DIMENSIONLIST_PROPERTY.getStringList();
+		//ConfigValues.DIMENSIONLIST = DIMENSIONLIST_PROPERTY.getStringList();
 		ConfigValues.GENERATE = GENERATE_PROPERTY.getBoolean();
 		ConfigValues.OREGENRATE = OREGENRATE_PROPERTY.getString();
 		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
