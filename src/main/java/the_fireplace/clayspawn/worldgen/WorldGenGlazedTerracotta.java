@@ -78,9 +78,9 @@ public class WorldGenGlazedTerracotta extends WorldGenMinable {
 	}
 
 	private static class StonePredicate implements Predicate<IBlockState> {
-		public boolean apply(@Nullable IBlockState p_apply_1_) {
-			if (p_apply_1_ != null && p_apply_1_.getBlock() == Blocks.STONE) {
-				BlockStone.EnumType blockstone$enumtype = p_apply_1_.getValue(BlockStone.VARIANT);
+		public boolean apply(@Nullable IBlockState testState) {
+			if (testState != null && testState.getBlock() == Blocks.STONE) {
+				BlockStone.EnumType blockstone$enumtype = testState.getValue(BlockStone.VARIANT);
 				return blockstone$enumtype.isNatural();
 			} else
 				return false;

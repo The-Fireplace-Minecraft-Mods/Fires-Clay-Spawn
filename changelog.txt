@@ -1,1 +1,1 @@
-Allow running the mod on the server-side only
+Add the ability to generate similar to Draconium Ore from Draconic Evolution

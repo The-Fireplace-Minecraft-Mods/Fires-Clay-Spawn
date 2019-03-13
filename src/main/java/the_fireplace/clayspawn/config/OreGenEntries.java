@@ -8,6 +8,6 @@ import the_fireplace.clayspawn.ClaySpawn;
 public class OreGenEntries extends GuiConfigEntries.SelectValueEntry {
 
 	public OreGenEntries(GuiConfig owningScreen, GuiConfigEntries owningEntryList, IConfigElement configElement) {
-		super(owningScreen, owningEntryList, configElement, ClaySpawn.instance.entries);
+		super(owningScreen, owningEntryList, configElement, ClaySpawn.instance.configGuiSelectionEntries);
 	}
 }

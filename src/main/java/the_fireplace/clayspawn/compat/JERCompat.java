@@ -30,13 +30,13 @@ public class JERCompat implements IModCompat {
 		for (int i = 0; i < WorldGeneratorClay.glazedStates.length; i++)
 			glazedStacks.add(new ItemStack(WorldGeneratorClay.glazedStates[i].getBlock()));
 		if (ConfigValues.GENERATE)
-			jerAPI.getWorldGenRegistry().register(clay, new DistributionSquare(ClaySpawn.instance.wg.getVeinCount(), ClaySpawn.instance.wg.getRate(), ClaySpawn.instance.wg.getMinLayer(), ClaySpawn.instance.wg.getMaxLayer()));
+			jerAPI.getWorldGenRegistry().register(clay, new DistributionSquare(ClaySpawn.instance.wg.getVeinChances(), (ClaySpawn.instance.wg.getMinVeinSize() + ClaySpawn.instance.wg.getMaxVeinSize()) / 2, ClaySpawn.instance.wg.getMinLayer(), ClaySpawn.instance.wg.getMaxLayer()));
 		if (ConfigValues.HARDGENERATE)
-			jerAPI.getWorldGenRegistry().register(hardened_clay, new DistributionSquare(ClaySpawn.instance.wg.getHardVeinCount(), ClaySpawn.instance.wg.getHardRate(), ClaySpawn.instance.wg.getHardMinLayer(), ClaySpawn.instance.wg.getHardMaxLayer()),
+			jerAPI.getWorldGenRegistry().register(hardened_clay, new DistributionSquare(ClaySpawn.instance.wg.getHardVeinChances(), (ClaySpawn.instance.wg.getHardMinVeinSize() + ClaySpawn.instance.wg.getHardMaxVeinSize()) / 2, ClaySpawn.instance.wg.getHardMinLayer(), ClaySpawn.instance.wg.getHardMaxLayer()),
 					new LootDrop(hardened_clay));
 		if (ConfigValues.GLAZEDGENERATE)
 			for (ItemStack stack : glazedStacks)
-				jerAPI.getWorldGenRegistry().register(stack, new DistributionSquare(ClaySpawn.instance.wg.getGlazedVeinCount(), ClaySpawn.instance.wg.getGlazedRate(), ClaySpawn.instance.wg.getGlazedMinLayer(), ClaySpawn.instance.wg.getGlazedMaxLayer()),
+				jerAPI.getWorldGenRegistry().register(stack, new DistributionSquare(ClaySpawn.instance.wg.getGlazedVeinChances(), (ClaySpawn.instance.wg.getGlazedMinVeinSize() + ClaySpawn.instance.wg.getGlazedMaxVeinSize()) / 2, ClaySpawn.instance.wg.getGlazedMinLayer(), ClaySpawn.instance.wg.getGlazedMaxLayer()),
 						new LootDrop(stack));
 	}
 }

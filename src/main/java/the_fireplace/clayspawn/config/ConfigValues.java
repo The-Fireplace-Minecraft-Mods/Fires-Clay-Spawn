@@ -6,17 +6,17 @@ import net.minecraftforge.fml.common.Loader;
  * @author The_Fireplace
  */
 public class ConfigValues {
-	public static String[] DIMENSIONLIST;
-	public static final String[] DIMENSIONLIST_DEFAULT = new String[]{"*"};
-	public static final String DIMENSIONLIST_NAME = "DimensionList";
+	//public static String[] DIMENSIONLIST;
+	//public static final String[] DIMENSIONLIST_DEFAULT = new String[]{"*"};
+	//public static final String DIMENSIONLIST_NAME = "DimensionList";
 	//Clay
 	public static boolean GENERATE;
 	public static final boolean GENERATE_DEFAULT = true;
 	public static final String GENERATE_NAME = "Generate";
-	public static String OREGENRATE;
+	public static String IMITATION;
 	public static final String OREGENRATE_DEFAULT = "Iron";
 	public static final String OREGENRATE_NAME = "OreGenRate";
-	public static int DENSITYOVERRIDE;
+	public static int VEINSIZEOVERRIDE;
 	public static final int DENSITYOVERRIDE_DEFAULT = 0;
 	public static final String DENSITYOVERRIDE_NAME = "DensityOverride";
 	public static int MAXHEIGHTOVERRIDE;
@@ -32,10 +32,10 @@ public class ConfigValues {
 	public static boolean HARDGENERATE;
 	public static final boolean HARDGENERATE_DEFAULT = true;
 	public static final String HARDGENERATE_NAME = "HardGenerate";
-	public static String HARDOREGENRATE;
+	public static String HARDIMITATION;
 	public static final String HARDOREGENRATE_DEFAULT = "Iron";
 	public static final String HARDOREGENRATE_NAME = "HardOreGenRate";
-	public static int HARDDENSITYOVERRIDE;
+	public static int HARDVEINSIZEOVERRIDE;
 	public static final int HARDDENSITYOVERRIDE_DEFAULT = 0;
 	public static final String HARDDENSITYOVERRIDE_NAME = "HardDensityOverride";
 	public static int HARDMAXHEIGHTOVERRIDE;
@@ -54,10 +54,10 @@ public class ConfigValues {
 	public static boolean GLAZEDGENERATE;
 	public static final boolean GLAZEDGENERATE_DEFAULT = false;
 	public static final String GLAZEDGENERATE_NAME = "GlazedGenerate";
-	public static String GLAZEDOREGENRATE;
+	public static String GLAZEDIMITATION;
 	public static final String GLAZEDOREGENRATE_DEFAULT = "Gold";
 	public static final String GLAZEDOREGENRATE_NAME = "GlazedOreGenRate";
-	public static int GLAZEDDENSITYOVERRIDE;
+	public static int GLAZEDVEINSIZEOVERRIDE;
 	public static final int GLAZEDDENSITYOVERRIDE_DEFAULT = 0;
 	public static final String GLAZEDDENSITYOVERRIDE_NAME = "GlazedDensityOverride";
 	public static int GLAZEDMAXHEIGHTOVERRIDE;

@@ -35,7 +35,7 @@ public class ClaySpawn {
 	public static final String MODNAME = "Fire's Clay Spawn";
 
 	public WorldGeneratorClay wg = new WorldGeneratorClay();
-	public Map<Object, String> entries = Maps.newHashMap();
+	public Map<Object, String> configGuiSelectionEntries = Maps.newHashMap();
 
 	public static Configuration file;
 	//public static Property DIMENSIONLIST_PROPERTY;
@@ -45,7 +45,7 @@ public class ClaySpawn {
 	public static Property DENSITYOVERRIDE_PROPERTY;
 	public static Property MAXHEIGHTOVERRIDE_PROPERTY;
 	public static Property MINHEIGHTOVERRIDE_PROPERTY;
-	public static Property VEINCOUNTOVERRIDE_PROPERTY;
+	public static Property VEINCHANCESOVERRIDE_PROPERTY;
 	//Terracotta
 	public static Property HARDGENERATE_PROPERTY;
 	public static Property HARDOREGENRATE_PROPERTY;
@@ -65,21 +65,21 @@ public class ClaySpawn {
 	public static void syncConfig() {
 		//ConfigValues.DIMENSIONLIST = DIMENSIONLIST_PROPERTY.getStringList();
 		ConfigValues.GENERATE = GENERATE_PROPERTY.getBoolean();
-		ConfigValues.OREGENRATE = OREGENRATE_PROPERTY.getString();
-		ConfigValues.DENSITYOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
+		ConfigValues.IMITATION = OREGENRATE_PROPERTY.getString();
+		ConfigValues.VEINSIZEOVERRIDE = DENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.MAXHEIGHTOVERRIDE = MAXHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.MINHEIGHTOVERRIDE = MINHEIGHTOVERRIDE_PROPERTY.getInt();
-		ConfigValues.VEINCOUNTOVERRIDE = VEINCOUNTOVERRIDE_PROPERTY.getInt();
+		ConfigValues.VEINCOUNTOVERRIDE = VEINCHANCESOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDGENERATE = HARDGENERATE_PROPERTY.getBoolean();
-		ConfigValues.HARDOREGENRATE = HARDOREGENRATE_PROPERTY.getString();
-		ConfigValues.HARDDENSITYOVERRIDE = HARDDENSITYOVERRIDE_PROPERTY.getInt();
+		ConfigValues.HARDIMITATION = HARDOREGENRATE_PROPERTY.getString();
+		ConfigValues.HARDVEINSIZEOVERRIDE = HARDDENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDMAXHEIGHTOVERRIDE = HARDMAXHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDMINHEIGHTOVERRIDE = HARDMINHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.HARDVEINCOUNTOVERRIDE = HARDVEINCOUNTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.COLORFULCLAY = COLORFULCLAY_PROPERTY.getBoolean();
 		ConfigValues.GLAZEDGENERATE = GLAZEDGENERATE_PROPERTY.getBoolean();
-		ConfigValues.GLAZEDOREGENRATE = GLAZEDOREGENRATE_PROPERTY.getString();
-		ConfigValues.GLAZEDDENSITYOVERRIDE = GLAZEDDENSITYOVERRIDE_PROPERTY.getInt();
+		ConfigValues.GLAZEDIMITATION = GLAZEDOREGENRATE_PROPERTY.getString();
+		ConfigValues.GLAZEDVEINSIZEOVERRIDE = GLAZEDDENSITYOVERRIDE_PROPERTY.getInt();
 		ConfigValues.GLAZEDMAXHEIGHTOVERRIDE = GLAZEDMAXHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.GLAZEDMINHEIGHTOVERRIDE = GLAZEDMINHEIGHTOVERRIDE_PROPERTY.getInt();
 		ConfigValues.GLAZEDVEINCOUNTOVERRIDE = GLAZEDVEINCOUNTOVERRIDE_PROPERTY.getInt();
@@ -101,6 +101,7 @@ public class ClaySpawn {
 		CSAPI.registerOre("forestry:copper", 108, 32, 6, 20);
 		CSAPI.registerOre("forestry:tin", 92, 16, 6, 18);
 		CSAPI.registerOre("brainstonemod:brainstone", 32, 0, 20, 1);
+		CSAPI.registerOre("draconicevolution:draconium_ore", 8, 2, 6, 10, 2);
 		file = new Configuration(new File(event.getModConfigurationDirectory(), "fclayspawn.cfg"));
 		file.load();
 		GENERATE_PROPERTY = file.get("clay", ConfigValues.GENERATE_NAME, ConfigValues.GENERATE_DEFAULT, I18n.translateToLocal(ConfigValues.GENERATE_NAME + ".tooltip"));
@@ -108,7 +109,7 @@ public class ClaySpawn {
 		DENSITYOVERRIDE_PROPERTY = file.get("clay", ConfigValues.DENSITYOVERRIDE_NAME, ConfigValues.DENSITYOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.DENSITYOVERRIDE_NAME + ".tooltip"));
 		MAXHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MAXHEIGHTOVERRIDE_NAME, ConfigValues.MAXHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.MAXHEIGHTOVERRIDE_NAME + ".tooltip"));
 		MINHEIGHTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.MINHEIGHTOVERRIDE_NAME, ConfigValues.MINHEIGHTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.MINHEIGHTOVERRIDE_NAME + ".tooltip"));
-		VEINCOUNTOVERRIDE_PROPERTY = file.get("clay", ConfigValues.VEINCOUNTOVERRIDE_NAME, ConfigValues.VEINCOUNTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.VEINCOUNTOVERRIDE_NAME + ".tooltip"));
+		VEINCHANCESOVERRIDE_PROPERTY = file.get("clay", ConfigValues.VEINCOUNTOVERRIDE_NAME, ConfigValues.VEINCOUNTOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.VEINCOUNTOVERRIDE_NAME + ".tooltip"));
 		HARDGENERATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDGENERATE_NAME, ConfigValues.HARDGENERATE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDGENERATE_NAME + ".tooltip"));
 		HARDOREGENRATE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDOREGENRATE_NAME, ConfigValues.HARDOREGENRATE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDOREGENRATE_NAME + ".tooltip"));
 		HARDDENSITYOVERRIDE_PROPERTY = file.get("hardenedclay", ConfigValues.HARDDENSITYOVERRIDE_NAME, ConfigValues.HARDDENSITYOVERRIDE_DEFAULT, I18n.translateToLocal(ConfigValues.HARDDENSITYOVERRIDE_NAME + ".tooltip"));
@@ -126,11 +127,11 @@ public class ClaySpawn {
 		DENSITYOVERRIDE_PROPERTY.setMinValue(0);
 		MAXHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
 		MINHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
-		VEINCOUNTOVERRIDE_PROPERTY.setMinValue(0);
+		VEINCHANCESOVERRIDE_PROPERTY.setMinValue(0);
 		DENSITYOVERRIDE_PROPERTY.setMaxValue(36);
 		MAXHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
 		MINHEIGHTOVERRIDE_PROPERTY.setMaxValue(255);
-		VEINCOUNTOVERRIDE_PROPERTY.setMaxValue(128);
+		VEINCHANCESOVERRIDE_PROPERTY.setMaxValue(128);
 		HARDDENSITYOVERRIDE_PROPERTY.setMinValue(0);
 		HARDMAXHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
 		HARDMINHEIGHTOVERRIDE_PROPERTY.setMinValue(0);
@@ -152,7 +153,7 @@ public class ClaySpawn {
 			DENSITYOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
 			MAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
 			MINHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
-			VEINCOUNTOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
+			VEINCHANCESOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
 			HARDOREGENRATE_PROPERTY.setConfigEntryClass(OreGenEntries.class);
 			HARDDENSITYOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
 			HARDMAXHEIGHTOVERRIDE_PROPERTY.setConfigEntryClass(GuiIntegerSlider.class);
@@ -182,56 +183,71 @@ public class ClaySpawn {
 	@EventHandler
 	public void serverAboutToStart(FMLServerAboutToStartEvent event) {
 		//Clay
-		if (ConfigValues.DENSITYOVERRIDE > 0)
-			wg.setRate(ConfigValues.DENSITYOVERRIDE);
-		else if (wg.genrate.get(ConfigValues.OREGENRATE) != null)
-			wg.setRate((int) wg.genrate.get(ConfigValues.OREGENRATE));
+		if (ConfigValues.VEINSIZEOVERRIDE > 0) {
+			wg.setMinVeinSize(ConfigValues.VEINSIZEOVERRIDE);
+			wg.setMaxVeinSize(ConfigValues.VEINSIZEOVERRIDE);
+		} else {
+			if (wg.minVeinSizes.get(ConfigValues.IMITATION) != null)
+				wg.setMinVeinSize(wg.minVeinSizes.get(ConfigValues.IMITATION));
+			if (wg.maxVeinSizes.get(ConfigValues.IMITATION) != null)
+				wg.setMaxVeinSize(wg.maxVeinSizes.get(ConfigValues.IMITATION));
+		}
 		if (ConfigValues.MAXHEIGHTOVERRIDE > 0)
 			wg.setMaxLayer(ConfigValues.MAXHEIGHTOVERRIDE);
-		else if (wg.genlayermax.get(ConfigValues.OREGENRATE) != null)
-			wg.setMaxLayer((int) wg.genlayermax.get(ConfigValues.OREGENRATE));
+		else if (wg.maxLayers.get(ConfigValues.IMITATION) != null)
+			wg.setMaxLayer(wg.maxLayers.get(ConfigValues.IMITATION));
 		if (ConfigValues.MINHEIGHTOVERRIDE > 0)
 			wg.setMinLayer(ConfigValues.MINHEIGHTOVERRIDE);
-		else if (wg.genlayermin.get(ConfigValues.OREGENRATE) != null)
-			wg.setMinLayer((int) wg.genlayermin.get(ConfigValues.OREGENRATE));
+		else if (wg.minLayers.get(ConfigValues.IMITATION) != null)
+			wg.setMinLayer(wg.minLayers.get(ConfigValues.IMITATION));
 		if (ConfigValues.VEINCOUNTOVERRIDE > 0)
 			wg.setMaxLayer(ConfigValues.VEINCOUNTOVERRIDE);
-		else if (wg.gencount.get(ConfigValues.OREGENRATE) != null)
-			wg.setVeinCount((int) wg.gencount.get(ConfigValues.OREGENRATE));
+		else if (wg.genChances.get(ConfigValues.IMITATION) != null)
+			wg.setVeinChances(wg.genChances.get(ConfigValues.IMITATION));
 		//Terracotta
-		if (ConfigValues.HARDDENSITYOVERRIDE > 0)
-			wg.setHardRate(ConfigValues.HARDDENSITYOVERRIDE);
-		else if (wg.genrate.get(ConfigValues.HARDOREGENRATE) != null)
-			wg.setHardRate((int) wg.genrate.get(ConfigValues.HARDOREGENRATE));
+		if (ConfigValues.HARDVEINSIZEOVERRIDE > 0) {
+			wg.setHardMinVeinSize(ConfigValues.HARDVEINSIZEOVERRIDE);
+			wg.setHardMaxVeinSize(ConfigValues.HARDVEINSIZEOVERRIDE);
+		} else {
+			if (wg.minVeinSizes.get(ConfigValues.HARDIMITATION) != null)
+				wg.setHardMinVeinSize(wg.minVeinSizes.get(ConfigValues.HARDIMITATION));
+			if (wg.maxVeinSizes.get(ConfigValues.HARDIMITATION) != null)
+				wg.setHardMaxVeinSize(wg.maxVeinSizes.get(ConfigValues.HARDIMITATION));
+		}
 		if (ConfigValues.HARDMAXHEIGHTOVERRIDE > 0)
 			wg.setHardMaxLayer(ConfigValues.HARDMAXHEIGHTOVERRIDE);
-		else if (wg.genlayermax.get(ConfigValues.HARDOREGENRATE) != null)
-			wg.setHardMaxLayer((int) wg.genlayermax.get(ConfigValues.HARDOREGENRATE));
+		else if (wg.maxLayers.get(ConfigValues.HARDIMITATION) != null)
+			wg.setHardMaxLayer(wg.maxLayers.get(ConfigValues.HARDIMITATION));
 		if (ConfigValues.HARDMINHEIGHTOVERRIDE > 0)
 			wg.setHardMinLayer(ConfigValues.HARDMINHEIGHTOVERRIDE);
-		else if (wg.genlayermin.get(ConfigValues.HARDOREGENRATE) != null)
-			wg.setHardMinLayer((int) wg.genlayermin.get(ConfigValues.HARDOREGENRATE));
+		else if (wg.minLayers.get(ConfigValues.HARDIMITATION) != null)
+			wg.setHardMinLayer(wg.minLayers.get(ConfigValues.HARDIMITATION));
 		if (ConfigValues.HARDVEINCOUNTOVERRIDE > 0)
 			wg.setHardMaxLayer(ConfigValues.HARDVEINCOUNTOVERRIDE);
-		else if (wg.gencount.get(ConfigValues.OREGENRATE) != null)
-			wg.setHardVeinCount((int) wg.gencount.get(ConfigValues.HARDOREGENRATE));
+		else if (wg.genChances.get(ConfigValues.HARDIMITATION) != null)
+			wg.setHardVeinChances(wg.genChances.get(ConfigValues.HARDIMITATION));
 		//Glazed Terracotta
-		if (ConfigValues.GLAZEDDENSITYOVERRIDE > 0)
-			wg.setGlazedRate(ConfigValues.GLAZEDDENSITYOVERRIDE);
-		else if (wg.genrate.get(ConfigValues.GLAZEDOREGENRATE) != null)
-			wg.setGlazedRate((int) wg.genrate.get(ConfigValues.GLAZEDOREGENRATE));
+		if (ConfigValues.GLAZEDVEINSIZEOVERRIDE > 0) {
+			wg.setGlazedMinVeinSize(ConfigValues.GLAZEDVEINSIZEOVERRIDE);
+			wg.setGlazedMaxVeinSize(ConfigValues.GLAZEDVEINSIZEOVERRIDE);
+		} else {
+			if (wg.minVeinSizes.get(ConfigValues.GLAZEDIMITATION) != null)
+				wg.setGlazedMinVeinSize(wg.minVeinSizes.get(ConfigValues.GLAZEDIMITATION));
+			if (wg.maxVeinSizes.get(ConfigValues.GLAZEDIMITATION) != null)
+				wg.setGlazedMaxVeinSize(wg.maxVeinSizes.get(ConfigValues.GLAZEDIMITATION));
+		}
 		if (ConfigValues.GLAZEDMAXHEIGHTOVERRIDE > 0)
 			wg.setGlazedMaxLayer(ConfigValues.GLAZEDMAXHEIGHTOVERRIDE);
-		else if (wg.genlayermax.get(ConfigValues.GLAZEDOREGENRATE) != null)
-			wg.setGlazedMaxLayer((int) wg.genlayermax.get(ConfigValues.GLAZEDOREGENRATE));
+		else if (wg.maxLayers.get(ConfigValues.GLAZEDIMITATION) != null)
+			wg.setGlazedMaxLayer(wg.maxLayers.get(ConfigValues.GLAZEDIMITATION));
 		if (ConfigValues.GLAZEDMINHEIGHTOVERRIDE > 0)
 			wg.setGlazedMinLayer(ConfigValues.GLAZEDMINHEIGHTOVERRIDE);
-		else if (wg.genlayermin.get(ConfigValues.GLAZEDOREGENRATE) != null)
-			wg.setGlazedMinLayer((int) wg.genlayermin.get(ConfigValues.GLAZEDOREGENRATE));
+		else if (wg.minLayers.get(ConfigValues.GLAZEDIMITATION) != null)
+			wg.setGlazedMinLayer(wg.minLayers.get(ConfigValues.GLAZEDIMITATION));
 		if (ConfigValues.GLAZEDVEINCOUNTOVERRIDE > 0)
 			wg.setGlazedMaxLayer(ConfigValues.GLAZEDVEINCOUNTOVERRIDE);
-		else if (wg.gencount.get(ConfigValues.OREGENRATE) != null)
-			wg.setGlazedVeinCount((int) wg.gencount.get(ConfigValues.GLAZEDOREGENRATE));
+		else if (wg.genChances.get(ConfigValues.GLAZEDIMITATION) != null)
+			wg.setGlazedVeinChances(wg.genChances.get(ConfigValues.GLAZEDIMITATION));
 	}
 
 	private void transferAncientConfig(File file) {

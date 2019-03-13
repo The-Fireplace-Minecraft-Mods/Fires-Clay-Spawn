@@ -9,54 +9,72 @@ public class CSAPI {
 	/**
 	 * Registers the ore generation style
 	 *
-	 * @param orename
+	 * @param oreName
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
-	 * @param maxlayer
+	 * @param maxLayer
 	 * 		The highest layer that ore can generate, must be between 0 and 255
 	 * @param veinSize
 	 * 		The approximate amount per vein
 	 */
-	public static void registerOre(String orename, int maxlayer, int veinSize) {
-		registerOre(orename, maxlayer, 0, veinSize);
+	public static void registerOre(String oreName, int maxLayer, int veinSize) {
+		registerOre(oreName, maxLayer, 0, veinSize);
 	}
 
 	/**
 	 * Registers the ore generation style
 	 *
-	 * @param orename
+	 * @param oreName
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
-	 * @param maxlayer
+	 * @param maxLayer
 	 * 		The highest layer that ore can generate, must be between 0 and 255
-	 * @param minlayer
+	 * @param minLayer
 	 * 		The lowest layer that ore can generate, must be between 0 and 255
 	 * @param veinSize
-	 * 		The approximate amount per vein
+	 * 		The approximate number of blocks per vein
 	 */
-	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize) {
-		registerOre(orename, maxlayer, minlayer, veinSize, 0);
+	public static void registerOre(String oreName, int maxLayer, int minLayer, int veinSize) {
+		registerOre(oreName, maxLayer, minLayer, veinSize, 0);
 	}
 
 	/**
 	 * Registers the ore generation style
 	 *
-	 * @param orename
+	 * @param oreName
 	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
-	 * @param maxlayer
+	 * @param maxLayer
 	 * 		The highest layer that ore can generate, must be between 0 and 255
-	 * @param minlayer
+	 * @param minLayer
 	 * 		The lowest layer that ore can generate, must be between 0 and 255
 	 * @param veinSize
 	 * 		The approximate amount per vein
-	 * @param veinCount
-	 * 		The number of veins per chunk
+	 * @param veinChances
+	 * 		The number of possible veins per chunk
 	 */
-	@SuppressWarnings("unchecked")
-	public static void registerOre(String orename, int maxlayer, int minlayer, int veinSize, int veinCount) {
-		String on = orename.toLowerCase();
-		ClaySpawn.instance.wg.genlayermax.put(on, maxlayer);
-		ClaySpawn.instance.wg.genlayermin.put(on, minlayer);
-		ClaySpawn.instance.wg.genrate.put(on, veinSize);
-		ClaySpawn.instance.wg.gencount.put(on, veinCount);
-		ClaySpawn.instance.entries.put(on, orename);
+	public static void registerOre(String oreName, int maxLayer, int minLayer, int veinSize, int veinChances) {
+		registerOre(oreName, maxLayer, minLayer, veinSize, veinSize, veinChances);
+	}
+
+	/**
+	 * Registers the ore generation style
+	 *
+	 * @param oreName
+	 * 		The name of the ore, without the " Ore"; if it isn't vanilla, add "yourmodid:" to the beginning
+	 * @param maxLayer
+	 * 		The highest layer that ore can generate, must be between 0 and 255
+	 * @param minLayer
+	 * 		The lowest layer that ore can generate, must be between 0 and 255
+	 * @param minVeinSize
+	 * 		The approximate amount per vein
+	 * @param veinChances
+	 * 		The number of possible veins per chunk
+	 */
+	public static void registerOre(String oreName, int maxLayer, int minLayer, int minVeinSize, int maxVeinSize, int veinChances) {
+		String on = oreName.toLowerCase();
+		ClaySpawn.instance.wg.maxLayers.put(on, maxLayer);
+		ClaySpawn.instance.wg.minLayers.put(on, minLayer);
+		ClaySpawn.instance.wg.minVeinSizes.put(on, minVeinSize);
+		ClaySpawn.instance.wg.maxVeinSizes.put(on, maxVeinSize);
+		ClaySpawn.instance.wg.genChances.put(on, veinChances);
+		ClaySpawn.instance.configGuiSelectionEntries.put(on, oreName);
 	}
 }

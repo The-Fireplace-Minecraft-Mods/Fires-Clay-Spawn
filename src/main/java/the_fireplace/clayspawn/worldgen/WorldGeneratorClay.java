@@ -18,25 +18,29 @@ import java.util.Random;
  * @author The_Fireplace
  */
 public class WorldGeneratorClay implements IWorldGenerator {
-	public final Map genlayermax = Maps.newHashMap();
-	public final Map genlayermin = Maps.newHashMap();
-	public final Map genrate = Maps.newHashMap();
-	public final Map gencount = Maps.newHashMap();
+	public final Map<String, Integer> maxLayers = Maps.newHashMap();
+	public final Map<String, Integer> minLayers = Maps.newHashMap();
+	public final Map<String, Integer> minVeinSizes = Maps.newHashMap();
+	public final Map<String, Integer> maxVeinSizes = Maps.newHashMap();
+	public final Map<String, Integer> genChances = Maps.newHashMap();
 
 	private int maxLayer = 65;
 	private int minLayer = 0;
-	private int rate = 8;
-	private int veinCount = 0;
+	private int minVeinSize = 8;
+	private int maxVeinSize = 8;
+	private int veinChances = 0;
 
 	private int hardMaxLayer = 65;
 	private int hardMinLayer = 0;
-	private int hardRate = 8;
-	private int hardVeinCount = 0;
+	private int hardMinVeinSize = 8;
+	private int hardMaxVeinSize = 8;
+	private int hardVeinChances = 0;
 
 	private int glazedMaxLayer = 32;
 	private int glazedMinLayer = 0;
-	private int glazedRate = 8;
-	private int glazedVeinCount = 0;
+	private int glazedMinVeinSize = 8;
+	private int glazedMaxVeinSize = 8;
+	private int glazedVeinChances = 0;
 
 	public static IBlockState hardState = Blocks.HARDENED_CLAY.getDefaultState();
 	public static IBlockState[] glazedStates = {Blocks.WHITE_GLAZED_TERRACOTTA.getDefaultState(), Blocks.BLACK_GLAZED_TERRACOTTA.getDefaultState(), Blocks.BLUE_GLAZED_TERRACOTTA.getDefaultState(), Blocks.GRAY_GLAZED_TERRACOTTA.getDefaultState(), Blocks.BROWN_GLAZED_TERRACOTTA.getDefaultState(), Blocks.CYAN_GLAZED_TERRACOTTA.getDefaultState(), Blocks.GREEN_GLAZED_TERRACOTTA.getDefaultState(), Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA.getDefaultState(), Blocks.LIME_GLAZED_TERRACOTTA.getDefaultState(), Blocks.MAGENTA_GLAZED_TERRACOTTA.getDefaultState(), Blocks.ORANGE_GLAZED_TERRACOTTA.getDefaultState(), Blocks.PINK_GLAZED_TERRACOTTA.getDefaultState(), Blocks.PURPLE_GLAZED_TERRACOTTA.getDefaultState(), Blocks.RED_GLAZED_TERRACOTTA.getDefaultState(), Blocks.SILVER_GLAZED_TERRACOTTA.getDefaultState(), Blocks.YELLOW_GLAZED_TERRACOTTA.getDefaultState()};
@@ -50,30 +54,30 @@ public class WorldGeneratorClay implements IWorldGenerator {
 	private void generateSurface(World world, Random random, int BlockX, int BlockZ) {
 		//Clay
 		if (ConfigValues.GENERATE && maxLayer - minLayer >= 0)
-			for (int i = 0; i < getVeinCount(); i++) {
+			for (int i = 0; i < getVeinChances(); i++) {
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(maxLayer - minLayer) + minLayer;
-				(new WorldGenMinable(Blocks.CLAY.getDefaultState(), rate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenMinable(Blocks.CLAY.getDefaultState(), random.nextInt(maxVeinSize - minVeinSize) + minVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		//Terracotta
 		if (ConfigValues.HARDGENERATE && hardMaxLayer - hardMinLayer >= 0)
-			for (int i = 0; i < getHardVeinCount(); i++) {
+			for (int i = 0; i < getHardVeinChances(); i++) {
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(hardMaxLayer - hardMinLayer) + hardMinLayer;
 				if (ConfigValues.COLORFULCLAY)
 					hardState = Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(random.nextInt(15));
-				(new WorldGenMinable(hardState, hardRate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenMinable(hardState, random.nextInt(hardMaxVeinSize - hardMinVeinSize) + hardMinVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		//Glazed Terracotta
 		if (ConfigValues.GLAZEDGENERATE && glazedMaxLayer - glazedMinLayer >= 0)
-			for (int i = 0; i < getGlazedVeinCount(); i++) {
+			for (int i = 0; i < getGlazedVeinChances(); i++) {
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(glazedMaxLayer - glazedMinLayer) + glazedMinLayer;
 				IBlockState glazedState = glazedStates[random.nextInt(glazedStates.length)];
-				(new WorldGenGlazedTerracotta(glazedState, glazedRate)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenGlazedTerracotta(glazedState, random.nextInt(glazedMaxVeinSize - glazedMinVeinSize) + glazedMinVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 	}
 
@@ -93,20 +97,28 @@ public class WorldGeneratorClay implements IWorldGenerator {
 		return minLayer;
 	}
 
-	public void setRate(int weight) {
-		rate = weight;
+	public void setMinVeinSize(int weight) {
+		minVeinSize = weight;
 	}
 
-	public int getRate() {
-		return rate;
+	public int getMinVeinSize() {
+		return minVeinSize;
 	}
 
-	public void setVeinCount(int veinCount) {
-		this.veinCount = veinCount;
+	public void setMaxVeinSize(int weight) {
+		maxVeinSize = weight;
 	}
 
-	public int getVeinCount() {
-		return veinCount == 0 ? maxLayer - minLayer : veinCount;
+	public int getMaxVeinSize() {
+		return maxVeinSize;
+	}
+
+	public void setVeinChances(int veinChances) {
+		this.veinChances = veinChances;
+	}
+
+	public int getVeinChances() {
+		return veinChances == 0 ? maxLayer - minLayer : veinChances;
 	}
 
 	public void setHardMaxLayer(int layer) {
@@ -125,20 +137,28 @@ public class WorldGeneratorClay implements IWorldGenerator {
 		return hardMinLayer;
 	}
 
-	public void setHardRate(int weight) {
-		hardRate = weight;
+	public void setHardMinVeinSize(int weight) {
+		hardMinVeinSize = weight;
 	}
 
-	public int getHardRate() {
-		return hardRate;
+	public int getHardMinVeinSize() {
+		return hardMinVeinSize;
 	}
 
-	public void setHardVeinCount(int veinCount) {
-		this.hardVeinCount = veinCount;
+	public void setHardMaxVeinSize(int weight) {
+		hardMaxVeinSize = weight;
 	}
 
-	public int getHardVeinCount() {
-		return hardVeinCount == 0 ? hardMaxLayer - hardMinLayer : hardVeinCount;
+	public int getHardMaxVeinSize() {
+		return hardMaxVeinSize;
+	}
+
+	public void setHardVeinChances(int veinCount) {
+		this.hardVeinChances = veinCount;
+	}
+
+	public int getHardVeinChances() {
+		return hardVeinChances == 0 ? hardMaxLayer - hardMinLayer : hardVeinChances;
 	}
 
 	public void setGlazedMaxLayer(int layer) {
@@ -157,19 +177,27 @@ public class WorldGeneratorClay implements IWorldGenerator {
 		return glazedMinLayer;
 	}
 
-	public void setGlazedRate(int weight) {
-		glazedRate = weight;
+	public void setGlazedMinVeinSize(int weight) {
+		glazedMinVeinSize = weight;
 	}
 
-	public int getGlazedRate() {
-		return glazedRate;
+	public void setGlazedMaxVeinSize(int weight) {
+		glazedMaxVeinSize = weight;
 	}
 
-	public void setGlazedVeinCount(int veinCount) {
-		this.glazedVeinCount = veinCount;
+	public int getGlazedMinVeinSize() {
+		return glazedMinVeinSize;
 	}
 
-	public int getGlazedVeinCount() {
-		return glazedVeinCount == 0 ? glazedMaxLayer - glazedMinLayer : glazedVeinCount;
+	public int getGlazedMaxVeinSize() {
+		return glazedMaxVeinSize;
+	}
+
+	public void setGlazedVeinChances(int veinCount) {
+		this.glazedVeinChances = veinCount;
+	}
+
+	public int getGlazedVeinChances() {
+		return glazedVeinChances == 0 ? glazedMaxLayer - glazedMinLayer : glazedVeinChances;
 	}
 }
