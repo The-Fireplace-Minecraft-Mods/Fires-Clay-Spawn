@@ -58,7 +58,7 @@ public class WorldGeneratorClay implements IWorldGenerator {
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(maxLayer - minLayer) + minLayer;
-				(new WorldGenMinable(Blocks.CLAY.getDefaultState(), random.nextInt(maxVeinSize - minVeinSize) + minVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenMinable(Blocks.CLAY.getDefaultState(), maxVeinSize >= minVeinSize ? random.nextInt(maxVeinSize - minVeinSize) + minVeinSize : random.nextInt(minVeinSize - maxVeinSize) + maxVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		//Terracotta
 		if (ConfigValues.HARDGENERATE && hardMaxLayer - hardMinLayer >= 0)
@@ -68,7 +68,7 @@ public class WorldGeneratorClay implements IWorldGenerator {
 				int Ycoord = random.nextInt(hardMaxLayer - hardMinLayer) + hardMinLayer;
 				if (ConfigValues.COLORFULCLAY)
 					hardState = Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(random.nextInt(15));
-				(new WorldGenMinable(hardState, random.nextInt(hardMaxVeinSize - hardMinVeinSize) + hardMinVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenMinable(hardState, hardMaxVeinSize >= hardMinVeinSize ? random.nextInt(hardMaxVeinSize - hardMinVeinSize) + hardMinVeinSize : random.nextInt(hardMinVeinSize - hardMaxVeinSize) + hardMaxVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 		//Glazed Terracotta
 		if (ConfigValues.GLAZEDGENERATE && glazedMaxLayer - glazedMinLayer >= 0)
@@ -77,7 +77,7 @@ public class WorldGeneratorClay implements IWorldGenerator {
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(glazedMaxLayer - glazedMinLayer) + glazedMinLayer;
 				IBlockState glazedState = glazedStates[random.nextInt(glazedStates.length)];
-				(new WorldGenGlazedTerracotta(glazedState, random.nextInt(glazedMaxVeinSize - glazedMinVeinSize) + glazedMinVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				(new WorldGenGlazedTerracotta(glazedState, glazedMaxVeinSize >= glazedMinVeinSize ? random.nextInt(glazedMaxVeinSize - glazedMinVeinSize) + glazedMinVeinSize : random.nextInt(glazedMaxVeinSize - glazedMinVeinSize) + glazedMaxVeinSize)).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
 			}
 	}
 

@@ -1,1 +1,1 @@
-Add the ability to generate similar to Draconium Ore from Draconic Evolution
+Quick fix for a crash introduced in 7.1.2

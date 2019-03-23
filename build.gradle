@@ -26,7 +26,7 @@ allprojects {
     targetCompatibility = 1.8
 }
 
-version = "7.1.2"
+version = "7.1.3"
 group= "the_fireplace.clayspawn"
 archivesBaseName = "FiresClaySpawn-1.12.2"
 
@@ -102,7 +102,7 @@ curseforge {
   project {
     id = '225539'
     changelog = file('changelog.txt')
-    releaseType = 'release'
+    releaseType = 'beta'
     addGameVersion '1.12.2'
     addGameVersion '1.12.1'
     addGameVersion '1.12'
@@ -131,7 +131,7 @@ modsIO {
 		modid = "1220"
 		minecraft = "1.12.2"
 		try{changelog = file('changelog.txt').text}catch(Exception e){changelog=""}
-		tag = ""
+		tag = "beta"
 		current = true
     }
 }
